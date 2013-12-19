@@ -1,0 +1,20 @@
+snippet ? True if cond else False
+	${1:True} if ${2:condition} else ${3:False}
+
+snippet ? cond and True or False
+	${1:cond} and ${2:True} or ${3:False}
+
+snippet list
+	${1:list} = [ ${2:value}, ${3:value}, ]
+
+snippet tuple
+	${1:tuple} = ( ${2:value}, ${3:value}, )
+
+snippet dict
+	${1:dict} = {
+		${2:key}:${3:value},
+		${4:key}:${5:value},
+	}
+
+snippet set
+	${1:var} = set( ${2:set} )

