@@ -1,0 +1,24 @@
+[submodule "bundle/fugitive"]
+	path = bundle/fugitive
+	url = http://github.com/tpope/vim-fugitive.git
+[submodule "bundle/vimwiki"]
+	path = bundle/vimwiki
+	url = http://github.com/vimwiki/vimwiki.git
+[submodule "bundle/gitgutter"]
+	path = bundle/gitgutter
+	url = http://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/solarized"]
+	path = bundle/solarized
+	url = http://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = http://github.com/majutsushi/tagbar.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = http://github.com/scrooloose/syntastic.git
+[submodule "bundle/lightline"]
+	path = bundle/lightline
+	url = http://github.com/itchyny/lightline.vim
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
