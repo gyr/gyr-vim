@@ -423,7 +423,16 @@ endfunction
 function! gyrlib#MRU(command, arg)
     execute "" . a:command . " " . a:arg
 endfunction
+"}}}3
 
+" gyrlib#DosToUnix{{{{3
+" https://github.com/romainl/dotvim/blob/master/autoload/functions.vim
+function! gyrlib#DosToUnix()
+    silent update
+    silent edit ++ff=dos
+    silent setlocal ff=unix
+    silent write
+endfunction
 "}}}3
 "
 "-------------------------------------------------------------------------------

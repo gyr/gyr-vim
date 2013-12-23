@@ -99,6 +99,7 @@ if g:gyrplugin_map_keys
     xnoremap # :<C-u>call gyrlib#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
     nnoremap <unique><leader>e<Space> :MRU <C-z><S-Tab>
+    nnoremap <unique><leader>d2u :set lz<Bar>call gyrlib#DosToUnix()<Bar>set nolz<CR>
 endif
 
 "}}}2
