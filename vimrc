@@ -885,6 +885,9 @@ onoremap af :normal Vaf<CR>
 
 noremap <unique><Leader>sl :source $HOME/.vim-tmp/sessions/*
 
+" insert shebang
+inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . &filetype
+
 "}}}2
 "------------------------------------------------------------------------
 " Insert Mode:{{{2

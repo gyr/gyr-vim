@@ -97,6 +97,8 @@ if g:gyrplugin_map_keys
 
     xnoremap * :<C-u>call gyrlib#VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
     xnoremap # :<C-u>call gyrlib#VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+    nnoremap <unique><leader>e<Space> :MRU <C-z><S-Tab>
 endif
 
 "}}}2
@@ -173,6 +175,7 @@ endfunction
 "===============================================================================
 " Command:{{{1
 command! -nargs=0 -bar Qargs execute 'args' gyrlib#QuickfixFilenames()
+command! -nargs=1 -complete=customlist,gyrlib#ListRecentFiles MRU call gyrlib#MRU("edit", <f-args>)
 
 " }}}1
 "===============================================================================

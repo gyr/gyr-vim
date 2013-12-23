@@ -409,6 +409,23 @@ function! gyrlib#VSetSearch(cmdtype)
 endfunction
 " }}}3
 
+" gyrlib#MRU{{{3
+" https://github.com/romainl/dotvim/blob/master/autoload/functions.vim
+function! gyrlib#ListRecentFiles(ArgLead, CmdLine, CursorPos)
+    let the_oldfiles = deepcopy(v:oldfiles)
+    let my_oldfiles = filter(the_oldfiles, 'v:val =~ a:ArgLead')
+    if len(my_oldfiles) > 16
+        call remove(my_oldfiles, 17, len(my_oldfiles) - 1)
+    endif
+    return my_oldfiles
+endfunction
+
+function! gyrlib#MRU(command, arg)
+    execute "" . a:command . " " . a:arg
+endfunction
+
+"}}}3
+"
 "-------------------------------------------------------------------------------
 " }}}2
 "-------------------------------------------------------------------------------
