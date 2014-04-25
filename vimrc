@@ -44,8 +44,8 @@ endtry
 "filetype on         " Enable filetype detection
 "filetype plugin on  " Enable filetype-specific plugins
 "filetype indent on  " Enable filetype-specific indenting
-filetype plugin indent on
 syntax on
+filetype plugin indent on
 
 "}}}1
 "===============================================================================
@@ -878,10 +878,10 @@ for char in ['$',',','.','/','-','=',':']
     exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 " Create a text object for folding regions
-xnoremap if :<C-U>silent!normal![zjV]zk<CR>
-onoremap if :normal Vif<CR>
-xnoremap af :<C-U>silent!normal![zV]z<CR>
-onoremap af :normal Vaf<CR>
+"xnoremap if :<C-U>silent!normal![zjV]zk<CR>
+"onoremap if :normal Vif<CR>
+"xnoremap af :<C-U>silent!normal![zV]z<CR>
+"onoremap af :normal Vaf<CR>
 
 noremap <unique><Leader>sl :source $HOME/.vim-tmp/sessions/*
 
@@ -1033,22 +1033,22 @@ noremap <unique><Up> <C-Y>
 noremap <unique><Down> <C-E>
 
 " Small unimpaired map set
-noremap <unique>[a :previous<CR>
-noremap <unique>]a :next<CR>
-noremap <unique>[A :first<CR>
-noremap <unique>]A :last<CR>
-noremap <unique>[b :bprevious<CR>
-noremap <unique>]b :bnext<CR>
-noremap <unique>[B :bfirst<CR>
-noremap <unique>]B :blast<CR>
-noremap <unique>[l :lprevious<CR>
-noremap <unique>]l :lnext<CR>
-noremap <unique>[L :lfirst<CR>
-noremap <unique>]L :llast<CR>
-noremap <unique>[q :cprevious<CR>
-noremap <unique>]q :cnext<CR>
-noremap <unique>[Q :cfirst<CR>
-noremap <unique>]Q :clast<CR>
+"noremap <unique>[a :previous<CR>
+"noremap <unique>]a :next<CR>
+"noremap <unique>[A :first<CR>
+"noremap <unique>]A :last<CR>
+"noremap <unique>[b :bprevious<CR>
+"noremap <unique>]b :bnext<CR>
+"noremap <unique>[B :bfirst<CR>
+"noremap <unique>]B :blast<CR>
+"noremap <unique>[l :lprevious<CR>
+"noremap <unique>]l :lnext<CR>
+"noremap <unique>[L :lfirst<CR>
+"noremap <unique>]L :llast<CR>
+"noremap <unique>[q :cprevious<CR>
+"noremap <unique>]q :cnext<CR>
+"noremap <unique>[Q :cfirst<CR>
+"noremap <unique>]Q :clast<CR>
 
 "}}}2
 "-------------------------------------------------------------------------------
