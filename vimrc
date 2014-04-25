@@ -1150,6 +1150,13 @@ catch /.*/
     echoerr "Failed to load Tagbar functions"
 endtry
 
+" Gitv:{{{3
+try
+    nnoremap <silent><unique><Leader>g :Gitv<CR>
+catch /.*/
+    echoerr "Failed to load Gitv functions"
+endtry
+
 " [DISABLE]Gundo:{{{3
 "try
 "    nnoremap <silent><unique><Leader><BS> :GundoToggle<CR>

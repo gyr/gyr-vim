@@ -22,13 +22,14 @@ call gyrlib#ProgTextMode()
 " Allow make to get syntax errors
 " allows us to run :make and get syntax errors for our python scripts
 " :cn :cp :cl :cw :cope :ccl
-setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-setlocal efm& efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-"setlocal makeprg=pep8
+"setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+"setlocal efm& efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+"setlocal makeprg=pep8\ %
 "setlocal errorformat=%f:%l:%c:%m
 "setlocal makeprg=pyflakes\ %
-"set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
-"set errorformat=%f:%l:\ %m
+"setlocal errorformat=%f:%l:%m
+set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
+set errorformat=%f:%l:\ [%t%n%m
 
 setlocal foldmethod& foldmethod=indent
 " Indentation sets
@@ -68,7 +69,9 @@ setlocal tags+=~/.vim-tmp/tags/python27tags
 " Mapping:{{{1
 "noremap <buffer><Leader>e :py EvaluateCurrentRange()<CR>
 noremap <buffer><Leader>mx :call gyrlib#MakeExecutable()<CR>
-noremap <buffer><Leader>s :!pyflakes %<CR>
+"noremap <buffer><Leader>s :!pyflakes %<CR>
+noremap <buffer><Leader>f :call <SID>PythonFormatChecker()<CR>
+noremap <buffer><Leader>s :call <SID>PythonSyntaxChecker()<CR>
 
 " }}}1
 "===============================================================================
@@ -91,6 +94,26 @@ let s:load_python = 1
 
 "===============================================================================
 " Function:{{{1
+"-------------------------------------------------------------------------------
+" Format checker (PEP8):{{{2
+function! s:PythonFormatChecker()
+    setlocal makeprg=pep8\ %
+    setlocal errorformat=%f:%l:%c:%m
+    make
+    cwindow
+endfunction
+
+"}}}2
+"-------------------------------------------------------------------------------
+" Syntax checker (pyflakes):{{{2
+function! s:PythonSyntaxChecker()
+    setlocal makeprg=pyflakes\ %
+    setlocal errorformat=%f:%l:%m
+    make
+    cwindow
+endfunction
+
+"}}}2
 "-------------------------------------------------------------------------------
 " Add breakpoint:{{{2
 python << EOF
