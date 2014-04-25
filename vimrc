@@ -939,7 +939,7 @@ nnoremap <unique><Leader>b :buffer <C-z>*
 "nnoremap <silent><unique><Leader>c :clist<bar>let nr = input("Which one: ")<Bar>exec "cc".nr<CR>
 "nnoremap <silent><unique><Leader>b :ls<CR>:sb<Space>
 " Create a scratch buffer
-"nnoremap <silent><unique><Leader>z :vnew<Bar>set buftype=nofile<Bar>echo "Scratch buffer"<CR>
+nnoremap <silent><unique><Leader>z :vnew<Bar>set buftype=nofile<Bar>echo "Scratch buffer"<CR>
 
 "}}}2
 "-------------------------------------------------------------------------------
@@ -1150,12 +1150,12 @@ catch /.*/
     echoerr "Failed to load Tagbar functions"
 endtry
 
-" Gundo:{{{3
-try
-    nnoremap <silent><unique><Leader><BS> :GundoToggle<CR>
-catch /.*/
-    echoerr "Failed to load Gundo functions"
-endtry
+" [DISABLE]Gundo:{{{3
+"try
+"    nnoremap <silent><unique><Leader><BS> :GundoToggle<CR>
+"catch /.*/
+"    echoerr "Failed to load Gundo functions"
+"endtry
 
 " [DISABLE]SkyBison:{{{3
 "try
@@ -1383,6 +1383,12 @@ endif
 "<C-]> and <C-t> to go to definition and back.
 "
 "<C-f> and <C-b> to go page down and page up.
+
+" Creating mappings that accept a count:
+" http://vimcasts.org/episodes/creating-mappings-that-accept-a-count/
+" Ex: nnoremap Q n.
+" nnoremap Q @='n.'<CR>
+" nnoremap Q :normal n.<CR>
 
 " }}}1
 "===============================================================================
