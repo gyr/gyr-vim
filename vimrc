@@ -35,6 +35,7 @@ try
     ""call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
     "call pathogen#helptags()
     "call pathogen#infect()
+    runtime bundle/pathogen/autoload/pathogen.vim
     execute pathogen#infect()
     execute pathogen#helptags()
     " After add a plugin in bundle run :Helptags
