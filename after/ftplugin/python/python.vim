@@ -24,9 +24,9 @@ call gyrlib#ProgTextMode()
 " :cn :cp :cl :cw :cope :ccl
 "setlocal makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 "setlocal efm& efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-"setlocal makeprg=pep8\ %
+"setlocal makeprg=pep8\ %:p
 "setlocal errorformat=%f:%l:%c:%m
-"setlocal makeprg=pyflakes\ %
+"setlocal makeprg=pyflakes\ %:p
 "setlocal errorformat=%f:%l:%m
 set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
 set errorformat=%f:%l:\ [%t%n%m
@@ -60,6 +60,8 @@ setlocal tags+=~/.vim-tmp/tags/python27tags
 "call system("ctags -R -f ~/.vim-tmp/tags/python27.tags /usr/lib/python2.7")
 "call system("ctags -R -f ~/.vim-tmp/tags/python3.tags /usr/lib/python3")
 
+let b:syntastic_checkers = ['python', 'pyflakes', 'pep8', 'pylint']
+
 " }}}1
 "===============================================================================
 " Tag Path:{{{1
@@ -71,7 +73,7 @@ setlocal tags+=~/.vim-tmp/tags/python27tags
 noremap <buffer><Leader>mx :call gyrlib#MakeExecutable()<CR>
 "noremap <buffer><Leader>s :!pyflakes %<CR>
 noremap <buffer><Leader>f :call <SID>PythonFormatChecker()<CR>
-noremap <buffer><Leader>s :call <SID>PythonSyntaxChecker()<CR>
+"noremap <buffer><Leader>s :call <SID>PythonSyntaxChecker()<CR>
 
 " }}}1
 "===============================================================================
@@ -97,7 +99,7 @@ let s:load_python = 1
 "-------------------------------------------------------------------------------
 " Format checker (PEP8):{{{2
 function! s:PythonFormatChecker()
-    setlocal makeprg=pep8\ %
+    setlocal makeprg=pep8\ %:p
     setlocal errorformat=%f:%l:%c:%m
     make
     cwindow
@@ -107,7 +109,7 @@ endfunction
 "-------------------------------------------------------------------------------
 " Syntax checker (pyflakes):{{{2
 function! s:PythonSyntaxChecker()
-    setlocal makeprg=pyflakes\ %
+    setlocal makeprg=pyflakes\ %:p
     setlocal errorformat=%f:%l:%m
     make
     cwindow

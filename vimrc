@@ -388,21 +388,6 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     runtime! macros/matchit.vim
 endif
 " }}}3
-" Fuzzyfinder:{{{3
-if isdirectory($HOME."/.vim/bundle/vim-fuzzyfinder")
-    "let g:fuf_modesDisable = [ 'dir', 'mrufile', 'mrucmd', 'bookmarkdir', 'tag', 'taggedfile', 'jumplist', 'changelist', 'quickfix', 'line', 'help', 'givendir', 'givencmd', ]
-    let g:fuf_modesDisable = [ 'dir', 'mrucmd', 'bookmarkfile', 'bookmarkdir', 'tag', 'buffertag', 'taggedfile', 'jumplist', 'changelist', 'quickfix', 'line', 'help', 'givendir', 'givencmd', ]
-    let g:fuf_abbrevMap = {
-                \   "^g:" : [$HOME.'/.gyr.d/**/'],
-                \   "^i:" : [$HOME.'/.ibm.d/**/'],
-                \   "^w:" : [$HOME],
-                \   "^d:" : [$HOME.'/work/debian/'],
-                \   "^k:" : [$HOME.'/work/powerkvm/kop-br-kop/**/'],
-                \   "^t:" : [$HOME.'/work/tmp/'],
-                \ }
-    let g:fuf_coveragefile_globPatterns = ['**/.*', '**/*', '.\w*/**']
-endif
-
 " clibs:{{{3
 " clibs.vim : Syntax highlighting for C library functions and constants
 let c_hi_identifiers = 'all'
@@ -411,6 +396,8 @@ let c_hi_libs = ['*']
 " syntastic:{{{3
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_error_symbol =  '▶'
+let g:syntastic_warning_symbol = '»'
 
 " lightline: {{{3
 if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
@@ -531,6 +518,21 @@ if isdirectory($HOME."/.vim/bundle/vimwiki")
     let g:vimwiki_fold_lists = 1
     let g:vimwiki_html_header_numbering = 1
 endif
+
+" [DISABLE]Fuzzyfinder:{{{3
+"if isdirectory($HOME."/.vim/bundle/vim-fuzzyfinder")
+"    "let g:fuf_modesDisable = [ 'dir', 'mrufile', 'mrucmd', 'bookmarkdir', 'tag', 'taggedfile', 'jumplist', 'changelist', 'quickfix', 'line', 'help', 'givendir', 'givencmd', ]
+"    let g:fuf_modesDisable = [ 'dir', 'mrucmd', 'bookmarkfile', 'bookmarkdir', 'tag', 'buffertag', 'taggedfile', 'jumplist', 'changelist', 'quickfix', 'line', 'help', 'givendir', 'givencmd', ]
+"    let g:fuf_abbrevMap = {
+"                \   "^g:" : [$HOME.'/.gyr.d/**/'],
+"                \   "^i:" : [$HOME.'/.ibm.d/**/'],
+"                \   "^w:" : [$HOME],
+"                \   "^d:" : [$HOME.'/work/debian/'],
+"                \   "^k:" : [$HOME.'/work/powerkvm/kop-br-kop/**/'],
+"                \   "^t:" : [$HOME.'/work/tmp/'],
+"                \ }
+"    let g:fuf_coveragefile_globPatterns = ['**/.*', '**/*', '.\w*/**']
+"endif
 
 " [DISABLE]Airline: {{{3
 "if isdirectory($HOME."/.vim/bundle/vim-airline")
@@ -865,11 +867,11 @@ vnoremap <unique><Leader>` o<ESC>i`<ESC>gvol<ESC>a`<ESC>l
 "nnoremap <unique><Leader>hc :hi! link Comment Comment<CR>
 
 " Better spell menu
-nnoremap <unique><Leader>s ea<C-X><C-S>
+"nnoremap <unique><Leader>s ea<C-X><C-S>
 
-nnoremap <unique><CR> o<ESC>
-nnoremap <unique><S-CR> O<ESC>
-
+"nnoremap <unique><CR> o<ESC>
+"nnoremap <unique><S-CR> O<ESC>
+"
 " https://github.com/paradigm/dotfiles/blob/master/.vimrc
 " Create new text objects for pairs of identical characters
 for char in ['$',',','.','/','-','=',':']
@@ -1127,23 +1129,6 @@ nnoremap <C-W>Y <C-W><C-W>:close<Bar>vsplit #<CR>
 "-------------------------------------------------------------------------------
 " Plugins:{{{2
 
-" Fuzzyfinder:{{{3
-try
-    noremap <silent><unique><Leader><Bslash> :FufFile<CR>
-    noremap <silent><unique><Leader><Space> :FufCoverageFile<CR>
-    noremap <silent><unique><Leader><CR> :FufMruFile<CR>
-    noremap <silent><unique><Leader><Tab> :FufBuffer<CR>
-    "noremap <silent><unique><Leader>] :FufBufferTagAllWithCursorWord!<CR>
-    " Load auxiliar file
-    "noremap <silent><unique><Leader>a :call fuf#givenfile#launch('', 0, '>AuxFile>', split(glob('~/.vim-tmp/aux-files/*'), "\n"))<CR>
-    " Load saved session
-    "noremap <silent><unique><Leader>o :call fuf#callbackfile#launch('~/.vim-tmp/sessions/', 0, '>Session>', '', gyrlib#ListenerLoadSession)<CR>
-    " Diff current file with selected one
-    noremap <silent><unique><Leader>d :call fuf#callbackfile#launch('', 0, '>DiffFile>', '', gyrlib#ListenerLoadDiffFile)<CR>
-catch /.*/
-    echoerr "Failed to load FuzzyFinder functions"
-endtry
-
 " Tagbar:{{{3
 try
     nnoremap <silent><unique><Leader>t :TagbarOpenAutoClose<CR>
@@ -1157,6 +1142,31 @@ try
 catch /.*/
     echoerr "Failed to load Gitv functions"
 endtry
+
+" Syntastic:{{{3
+try
+    nnoremap <silent><unique><Leader>sc :SyntasticCheck<CR>
+    nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
+catch /.*/
+    echoerr "Failed to load Gitv functions"
+endtry
+
+" [DISABLE]Fuzzyfinder:{{{3
+"try
+"    noremap <silent><unique><Leader><Bslash> :FufFile<CR>
+"    noremap <silent><unique><Leader><Space> :FufCoverageFile<CR>
+"    noremap <silent><unique><Leader><CR> :FufMruFile<CR>
+"    noremap <silent><unique><Leader><Tab> :FufBuffer<CR>
+"    "noremap <silent><unique><Leader>] :FufBufferTagAllWithCursorWord!<CR>
+"    " Load auxiliar file
+"    "noremap <silent><unique><Leader>a :call fuf#givenfile#launch('', 0, '>AuxFile>', split(glob('~/.vim-tmp/aux-files/*'), "\n"))<CR>
+"    " Load saved session
+"    "noremap <silent><unique><Leader>o :call fuf#callbackfile#launch('~/.vim-tmp/sessions/', 0, '>Session>', '', gyrlib#ListenerLoadSession)<CR>
+"    " Diff current file with selected one
+"    noremap <silent><unique><Leader>d :call fuf#callbackfile#launch('', 0, '>DiffFile>', '', gyrlib#ListenerLoadDiffFile)<CR>
+"catch /.*/
+"    echoerr "Failed to load FuzzyFinder functions"
+"endtry
 
 " [DISABLE]Gundo:{{{3
 "try
