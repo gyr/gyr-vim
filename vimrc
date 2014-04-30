@@ -296,7 +296,8 @@ if exists('+undodir') | set undodir=~/.vim-tmp/undo,~/.tmp,~/tmp,/var/tmp,/tmp |
 "}}}2
 "-------------------------------------------------------------------------------
 " Running make and jumping to errors:{{{2
-set grepprg=ack-grep\ -H\ --nocolor\ --nogroup\ --column
+"set grepprg=ack\ -H\ --nocolor\ --nogroup\ --column
+set grepprg=ag\ --nocolor\ --nogroup\ --column
 
 "}}}2
 "-------------------------------------------------------------------------------
@@ -1146,7 +1147,8 @@ endtry
 " Syntastic:{{{3
 try
     nnoremap <silent><unique><Leader>sc :SyntasticCheck<CR>
-    nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
+    "nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
+    nnoremap <silent><unique><Leader><BS> :SyntasticReset<CR>
 catch /.*/
     echoerr "Failed to load Gitv functions"
 endtry
@@ -1321,6 +1323,7 @@ endif
 " gv    => repeat last selection
 " ga    => code of character under cursor
 " g?    => Rot13 encode (embaralha o texto)
+" gn    => go to next match and select it
 " [i    => show first occurence of pattern, for instance, show first variable attribution
 " [I    => list of matching pattern
 " ]]    => begin function
