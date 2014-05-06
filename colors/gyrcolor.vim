@@ -17,6 +17,9 @@ endif
 hi clear
 " This color scheme uses a dark background.
 set background=dark
+" allow italic fonts inside tmux
+set t_ZH=[3m
+set t_ZR=[23m
 
 let colors_name = "gyrcolor"
 let g:gyr_colorscheme = 'blue'
@@ -191,7 +194,7 @@ if ! has("gui_running")
     exec "hi CursorLine   cterm=none                                                 ctermbg=".s:linecol
     exec "hi ColorColumn  cterm=none                                                 ctermbg=".s:linecol
     exec "hi MatchParen   cterm=none              ctermfg=".s:colordict['black']."   ctermbg=".s:colordict['darkred']
-    exec "hi Comment      cterm=none              ctermfg=".s:colordict['darkgray']
+    exec "hi Comment      cterm=italic              ctermfg=".s:colordict['darkgray']
     exec "hi Constant     cterm=none              ctermfg=".s:local_colorscheme['constant']
     exec "hi Special      cterm=none              ctermfg=".s:colordict['blue']
     exec "hi Identifier   cterm=none              ctermfg=".s:local_colorscheme['identifier']

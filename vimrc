@@ -395,6 +395,7 @@ let c_hi_identifiers = 'all'
 let c_hi_libs = ['*']
 
 " syntastic:{{{3
+let g:syntastic_mode_map = { 'mode': 'passive', }
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_error_symbol =  '▶'
@@ -1146,7 +1147,7 @@ endtry
 
 " Syntastic:{{{3
 try
-    nnoremap <silent><unique><Leader>sc :SyntasticCheck<CR>
+    nnoremap <silent><unique><Leader><CR> :SyntasticCheck<CR>
     "nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
     nnoremap <silent><unique><Leader><BS> :SyntasticReset<CR>
 catch /.*/
