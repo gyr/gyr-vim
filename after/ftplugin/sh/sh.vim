@@ -30,8 +30,8 @@ call gyrlib#ProgTextMode()
 "}}}1
 "===============================================================================
 " Abbreviation:{{{1
-iab <buffer> bash,, #!/bin/bash<C-R>=gyrlib#EatChar('\s')<CR>
-iab <buffer> sb,, #!/bin/sh<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> bash,, #!/bin/bash<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> sb,, #!/bin/sh<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> fh,, <C-R>=gyrlib#AddFh('#', 'full')<CR><C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> gh,, [ $# -eq 1 -a "$1" = '--help' ] && { gyr-print-helper $0; exit 0; }<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> ge,, { gyr-print -e ${0##*/} ""; exit 1; }<C-R>=gyrlib#EatChar('\s')<CR>

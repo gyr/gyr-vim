@@ -63,27 +63,15 @@ if g:gyrplugin_map_keys
 
     "}}}2
     " GYRLIB MAPS:{{{2
-    noremap <silent><unique><Del> :set lz<Bar>call gyrlib#DelTrailingSpaces()<Bar>set nolz<CR>
+    nnoremap <silent><unique><Del> :set lz<Bar>call gyrlib#DelTrailingSpaces()<Bar>set nolz<CR>
     execute "noremap <silent><unique>" g:gyrplugin_map_prefix."q" ":set lz<Bar>call gyrlib#BufcloseCloseIt()<Bar>set nolz<CR>"
     "noremap <silent><unique><Leader>c :set lz<Bar>call gyrlib#CommentOnOff()<Bar>set nolz<CR>
     execute "noremap <silent><unique>" g:gyrplugin_map_prefix."ss" ":set lz<Bar>call gyrlib#SaveCurrentSession()<Bar>set nolz<CR>"
     "execute "noremap <silent><unique>" g:gyrplugin_map_prefix."f" ":set lz<Bar>call gyrlib#FindMate()<Bar>set nolz<CR>"
     "noremap <silent><unique><Leader>h :set lz<Bar>call gyrlib#ToggleShowEvilspace()<Bar>set nolz<CR>
     "execute "noremap <silent><unique>" g:gyrplugin_map_prefix."r" ":set lz<Bar>call gyrlib#RunShellCommand()<Bar>set nolz<CR>"
-    if hasmapto('<c-r>=TriggerSnippet()<cr>')
-        iunmap <Tab>
-        ino <silent><S-Right> <c-r>=TriggerSnippet()<cr>
-        sunmap <Tab>
-        snor <silent><S-Right> <esc>i<right><c-r>=TriggerSnippet()<cr>
-    endif
-    if hasmapto('<c-r>=BackwardsSnippet()<cr>')
-        iunmap <S-Tab>
-        ino <silent><S-Left> <c-r>=BackwardsSnippet()<cr>
-        sunmap <S-Tab>
-        snor <silent><S-Left> <esc>i<right><c-r>=BackwardsSnippet()<cr>
-    endif
+
     inoremap <unique><Tab> <C-R>=gyrlib#SmartComplete()<CR>
-    inoremap <unique><S-Tab> <Tab>
 
     onoremap an :<c-u>call gyrlib#NextTextObject('a', 'f')<cr>
     xnoremap an :<c-u>call gyrlib#NextTextObject('a', 'f')<cr>

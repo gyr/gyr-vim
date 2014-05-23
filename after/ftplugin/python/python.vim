@@ -73,14 +73,14 @@ let b:syntastic_quiet_messages = { "regex": ['E501 line too long',], }
 "noremap <buffer><Leader>e :py EvaluateCurrentRange()<CR>
 noremap <buffer><Leader>mx :call gyrlib#MakeExecutable()<CR>
 "noremap <buffer><Leader>s :!pyflakes %<CR>
-noremap <buffer><Leader>f :call <SID>PythonFormatChecker()<CR>
+"noremap <buffer><Leader>f :call <SID>PythonFormatChecker()<CR>
 "noremap <buffer><Leader>s :call <SID>PythonSyntaxChecker()<CR>
 
 " }}}1
 "===============================================================================
 " Abbreviation:{{{1
-iab <buffer> py,, #!/usr/bin/python<C-R>=gyrlib#EatChar('\s')<CR>
-iab <buffer> sb,, #!/usr/bin/env python<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> py,, #!/usr/bin/python<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> sb,, #!/usr/bin/env python<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> fh,, <C-R>=gyrlib#AddFh('#', 'short')<CR><C-R>=gyrlib#EatChar('\s')<CR>
 cab <buffer> ctags,, !ctags -R -f ~/.vim-tmp/tags/python.ctags /usr/lib/python2.5/
 

@@ -169,6 +169,7 @@ elseif g:gyr_colorscheme == 'green'
 endif
 
 if ! has("gui_running")
+    exec "hi SignColumn   cterm=none              ctermfg=".s:colordict['white']."   ctermbg=".s:colordict['black']
     exec "hi SpecialKey   cterm=underline         ctermfg=".s:colordict['darkred']
     exec "hi NonText      cterm=underline         ctermfg=".s:colordict['darkred']
     exec "hi Search       cterm=none              ctermfg=".s:colordict['black']."   ctermbg=".s:colordict['yellow']

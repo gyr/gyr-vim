@@ -55,7 +55,7 @@ noremap <buffer><Leader>s :!perl -c -w %<CR>
 "}}}1
 "===============================================================================
 " Abbreviation:{{{1
-iab <buffer> sb,, #!/usr/bin/perl<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> sb,, #!/usr/bin/perl<C-R>=gyrlib#EatChar('\s')<CR>
 
 " }}}1
 "===============================================================================

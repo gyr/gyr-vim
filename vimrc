@@ -187,11 +187,11 @@ set novisualbell
 " for X11:
 "   + is the clipboard register (Ctrl-{c,v})
 "   * is the selection register (middle click, Shift-Insert)
-set clipboard+=unnamed " "unnamed" to use the * register like unnamed register
+""set clipboard+=unnamed " "unnamed" to use the * register like unnamed register
 set clipboard-=autoselect " "unnamed" to use the * register like unnamed register
 " use clipboard register in linux when supported
 if has("unix") && v:version >= 703
-    set clipboard+=unnamedplus
+    ""set clipboard+=unnamedplus
     "set clipboard^=unnamedplus
 endif
 " Prevent vim from trying to connect and use X server's clipboard,
@@ -400,6 +400,9 @@ let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_error_symbol =  '▶'
 let g:syntastic_warning_symbol = '»'
+
+" Ultisnips:{{{3
+let g:UltiSnipsExpandTrigger="<S-Tab>"
 
 " lightline: {{{3
 if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
@@ -742,6 +745,11 @@ if has("autocmd") && exists("+omnifunc")
                 \   if &omnifunc == "" |
                 \       setlocal omnifunc=syntaxcomplete#Complete |
                 \   endif
+    " close preview window automatically without exiting insert mode for
+    " omnicompletion (see completeopt)
+    " http://vim.wikia.com/wiki/Omnicomplete_-_Remove_Python_Pydoc_Preview_Window
+    autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
 
 " To be used when :gui is issued
@@ -893,6 +901,8 @@ noremap <unique><Leader>sl :source $HOME/.vim-tmp/sessions/*
 " insert shebang
 inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . &filetype
 
+" format line
+noremap <unique><Leader>f gqip
 "}}}2
 "------------------------------------------------------------------------
 " Insert Mode:{{{2
@@ -910,7 +920,9 @@ inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . 
 "nnoremap <unique>Y y$
 noremap <unique>Y y$
 noremap <Leader>y "+y
+noremap <Leader>px :set paste<CR>:put  *<CR>:set nopaste<CR>
 noremap <Leader>p :set paste<CR>:put  +<CR>:set nopaste<CR>
+noremap <Leader>Px :set paste<CR>:put! *<CR>:set nopaste<CR>
 noremap <Leader>P :set paste<CR>:put! +<CR>:set nopaste<CR>
 "map <Leader>p "+p
 "map <Leader>P "+P
@@ -1032,7 +1044,7 @@ if &diff
     nnoremap [c [czz
 endif
 
-nnoremap <unique><S-Space> <C-U>
+"nnoremap <unique><S-Space> <C-U>
 
 noremap <unique><Up> <C-Y>
 noremap <unique><Down> <C-E>
@@ -1151,7 +1163,7 @@ try
     "nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
     nnoremap <silent><unique><Leader><BS> :SyntasticReset<CR>
 catch /.*/
-    echoerr "Failed to load Gitv functions"
+    echoerr "Failed to load Syntastic functions"
 endtry
 
 " [DISABLE]Fuzzyfinder:{{{3

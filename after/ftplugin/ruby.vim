@@ -31,8 +31,8 @@ let g:rubycomplete_rails = 1
 "}}}1
 "===============================================================================
 " Abbreviation:{{{1
-iab <buffer> ru,, #!/usr/bin/ruby<C-R>=gyrlib#EatChar('\s')<CR>
-iab <buffer> sb,, #!/usr/bin/env ruby<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> ru,, #!/usr/bin/ruby<C-R>=gyrlib#EatChar('\s')<CR>
+"iab <buffer> sb,, #!/usr/bin/env ruby<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> fh,, <C-R>=gyrlib#AddFh('#', 'short')<CR><C-R>=gyrlib#EatChar('\s')<CR>
 
 "}}}1
