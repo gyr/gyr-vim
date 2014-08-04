@@ -401,9 +401,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_error_symbol =  '▶'
 let g:syntastic_warning_symbol = '»'
 
-" Ultisnips:{{{3
-let g:UltiSnipsExpandTrigger="<S-Tab>"
-
 " lightline: {{{3
 if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
     let g:lightline = {
@@ -524,6 +521,9 @@ if isdirectory($HOME."/.vim/bundle/vimwiki")
     let g:vimwiki_html_header_numbering = 1
 endif
 
+" [DISABLE]Ultisnips:{{{3
+"let g:UltiSnipsExpandTrigger="<S-Tab>"
+
 " [DISABLE]Fuzzyfinder:{{{3
 "if isdirectory($HOME."/.vim/bundle/vim-fuzzyfinder")
 "    "let g:fuf_modesDisable = [ 'dir', 'mrufile', 'mrucmd', 'bookmarkdir', 'tag', 'taggedfile', 'jumplist', 'changelist', 'quickfix', 'line', 'help', 'givendir', 'givencmd', ]
@@ -533,7 +533,7 @@ endif
 "                \   "^i:" : [$HOME.'/.ibm.d/**/'],
 "                \   "^w:" : [$HOME],
 "                \   "^d:" : [$HOME.'/work/debian/'],
-"                \   "^k:" : [$HOME.'/work/powerkvm/kop-br-kop/**/'],
+"                \   "^k:" : [$HOME.'/work/powerkvm/kop/**/'],
 "                \   "^t:" : [$HOME.'/work/tmp/'],
 "                \ }
 "    let g:fuf_coveragefile_globPatterns = ['**/.*', '**/*', '.\w*/**']
@@ -964,7 +964,7 @@ nnoremap <silent><unique><Leader>z :vnew<Bar>set buftype=nofile<Bar>echo "Scratc
 nnoremap <unique><Leader>eg :edit $HOME/.gyr.d/**/*
 nnoremap <unique><Leader>ev :edit $HOME/.vim/**/*
 nnoremap <unique><Leader>ei :edit $HOME/.ibm.d/**/*
-nnoremap <unique><Leader>ek :edit $HOME/work/powerkvm/kop-br-kop/**/*
+nnoremap <unique><Leader>ek :edit $HOME/work/powerkvm/kop/**/*
 nnoremap <unique><Leader>e/ :edit **/*
 nnoremap <unique><Leader>e. :edit %:p:h/**/*
 nnoremap <unique><Leader>eh :edit ~/*
@@ -1161,7 +1161,7 @@ endtry
 try
     nnoremap <silent><unique><Leader><CR> :SyntasticCheck<CR>
     "nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
-    nnoremap <silent><unique><Leader><BS> :SyntasticReset<CR>
+    nnoremap <silent><unique><Leader><BS> :SyntasticReset<CR>``zz
 catch /.*/
     echoerr "Failed to load Syntastic functions"
 endtry

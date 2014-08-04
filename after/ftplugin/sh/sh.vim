@@ -35,7 +35,27 @@ call gyrlib#ProgTextMode()
 iab <buffer> fh,, <C-R>=gyrlib#AddFh('#', 'full')<CR><C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> gh,, [ $# -eq 1 -a "$1" = '--help' ] && { gyr-print-helper $0; exit 0; }<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> ge,, { gyr-print -e ${0##*/} ""; exit 1; }<C-R>=gyrlib#EatChar('\s')<CR>
-iab <buffer> error,, # Always exit on errors<CR>set -e<CR># Undefined variables, we don't like you<CR>set -u<CR># ERR traps are inherited by shell functions, command substitutions and<CR># commands executed in a subshell environment.<CR>set -E<C-R>=gyrlib#EatChar('\s')<CR>
+iab <buffer> error,, # Always exit on errors<CR>
+            \set -e<CR>
+            \# Undefined variables, we don't like you<CR>
+            \set -u<CR>
+            \# ERR traps are inherited by shell functions, command substitutions and<CR>
+            \# commands executed in a subshell environment.<CR>
+            \set -E<CR>
+            \<C-R>=gyrlib#EatChar('\s')<CR>
+iab <buffer> trap,, # trap handler<CR>
+            \trap 'exit_hook $?' EXIT<CR>
+            \# reset exit code<CR>
+            \#trap 'exit_hook $?; trap - EXIT' EXIT INT TERM HUP QUIT<CR>
+            \# ignore exit code<CR>
+            \#trap 'trap "" EXIT; exit_hook $?' EXIT INT TERM HUP QUIT<CR>
+            \exit_hook() {<CR>
+            \if [ "$1" -ne "0" ]; then<CR>
+            \gyr-print -e "${0##*/}" "Error at line ${LINENO} with exit code $1"<CR>
+            \echo "cmd: '${BASH_COMMAND}'"<CR>
+            \fi<CR>
+            \}<CR>
+            \<C-R>=gyrlib#EatChar('\s')<CR>
 
 "}}}1
 "===============================================================================
