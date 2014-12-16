@@ -22,6 +22,11 @@ setlocal errorformat=%f:\ %l:\ %m
 
 call gyrlib#ProgTextMode()
 
+let b:syntastic_checkers=['sh', 'bash']
+let b:syntastic_sh_args='-n'
+let b:syntastic_sh_sh_args='-n'
+let b:syntastic_sh_bash_args='-n'
+
 "}}}1
 "===============================================================================
 " Autocommand:{{{1

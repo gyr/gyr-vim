@@ -27,6 +27,7 @@ for s:dir in s:list_dir
 endfor
 
 let g:netrw_home = s:base_dir
+let g:netrw_winsize=20
 
 filetype plugin indent off
 syntax off
@@ -117,7 +118,7 @@ if &t_Co > 2 || has("gui_running")
     set background=dark " Use colors which look better on the background
     set synmaxcol=2000  " Syntax coloring lines that are too long just slows down the world
 endif
-"set cursorcolumn
+set cursorcolumn
 set cursorline
 if exists('+colorcolumn')
     set colorcolumn=+1
@@ -254,6 +255,7 @@ set foldtext=NeatFoldText()
 "-------------------------------------------------------------------------------
 " Diff mode:{{{2
 "set diffopt+=iwhite "ignore white spaces
+set diffopt+=vertical "force diff vertical split
 
 "}}}2
 "-------------------------------------------------------------------------------
@@ -356,14 +358,16 @@ if &term =~ '256color'
     set t_ut=
 endif
 
-if &t_Co >= 16
+if &t_Co > 16
     try
-        "let g:solarized_termcolors=256
-        "let g:solarized_visibility="high"
-        "let g:solarized_visibility="low"
         set background=dark
-        "colorscheme solarized
-        colorscheme gyrcolor
+        "colorscheme gyrcolor
+        let g:solarized_termcolors=256
+        let g:solarized_contrast="high"    "default value is normal
+        let g:solarized_visibility="high"  "default value is normal
+        let g:solarized_diffmode="high"    "default value is normal
+        colorscheme solarized
+        call togglebg#map("<F5>")
     catch /.*/
         echoerr "E: Failed to set colorscheme"
     endtry
@@ -396,10 +400,12 @@ let c_hi_libs = ['*']
 
 " syntastic:{{{3
 let g:syntastic_mode_map = { 'mode': 'passive', }
-let g:syntastic_auto_jump = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_error_symbol =  '▶'
-let g:syntastic_warning_symbol = '»'
+let g:syntastic_auto_jump = 2
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_error_symbol =  '▶'
+"let g:syntastic_warning_symbol = '»'
+let g:syntastic_error_symbol =  'E'
+let g:syntastic_warning_symbol = 'W'
 
 " lightline: {{{3
 if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
@@ -501,6 +507,9 @@ if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/b
       SyntasticCheck
       call lightline#update()
     endfunction
+endif
+if &t_Co > 16
+    let g:lightline.colorscheme = 'solarized'
 endif
 
 " Vimwiki: {{{3
@@ -960,14 +969,16 @@ nnoremap <silent><unique><Leader>z :vnew<Bar>set buftype=nofile<Bar>echo "Scratc
 
 "}}}2
 "-------------------------------------------------------------------------------
-" File:{{{2
-nnoremap <unique><Leader>eg :edit $HOME/.gyr.d/**/*
-nnoremap <unique><Leader>ev :edit $HOME/.vim/**/*
-nnoremap <unique><Leader>ei :edit $HOME/.ibm.d/**/*
-nnoremap <unique><Leader>ek :edit $HOME/work/powerkvm/kop/**/*
-nnoremap <unique><Leader>e/ :edit **/*
-nnoremap <unique><Leader>e. :edit %:p:h/**/*
-nnoremap <unique><Leader>eh :edit ~/*
+"File:{{{2
+nnoremap <unique><Leader>e :Lex<CR>
+"nnoremap <unique><Leader>eg :edit $HOME/.gyr.d/**/*
+"nnoremap <unique><Leader>ev :edit $HOME/.vim/**/*
+"nnoremap <unique><Leader>ei :edit $HOME/.ibm.d/**/*
+"nnoremap <unique><Leader>eko :edit $HOME/work/powerkvm/kop/**/*
+"nnoremap <unique><Leader>eki :edit $HOME/work/powerkvm/kimchi/**/*
+"nnoremap <unique><Leader>e/ :edit **/*
+"nnoremap <unique><Leader>e. :edit %:p:h/**/*
+"nnoremap <unique><Leader>eh :edit ~/*
 "}}}2
 "-------------------------------------------------------------------------------
 " Tab:{{{2
@@ -981,6 +992,7 @@ nnoremap <unique><Leader>eh :edit ~/*
 " Fixes:{{{2
 " Disable enter 'Ex mode'
 noremap Q <Nop>
+noremap gQ <Nop>
 " Don't use Ex mode, use Q for formatting
 "noremap Q gq
 noremap q: <Nop>
@@ -1261,13 +1273,16 @@ ab dir,, <C-R>=expand("%:p:h")<CR><C-R>=gyrlib#EatChar('\s')<CR>
 " If forgot to sudo vim a file, do that with :w!!
 "cab w,, %!sudo tee > /dev/null %<CR>
 "cab w,, %!sudo tee > /dev/null %<CR>
-cab w,, w !sudo tee % > /dev/null <CR>
-cab todo,, e ~/.vim-tmp/gyr.todo<CR>
+cab wsudo,, w !sudo tee % > /dev/null <CR>
 " Copy the entire buffer to the system clipboard
 cab y,, %y+<CR>
 
-" open files in the current buffer directory
-"cab e,, e <C-R>=expand("%:p:h")."/"<CR><C-R>=gyrlib#EatChar('\s')<CR>
+cab eg edit $HOME/.gyr.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ev edit $HOME/.vim/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ei edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eko edit $HOME/work/powerkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eki edit $HOME/work/powerkvm/kimchi/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab e. edit <C-R>=expand("%:p:h")<CR>/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 iab gyr,, Gustavo Yokoyama Ribeiro<C-R>=gyrlib#EatChar('\s')<CR>
 iab gyrmail,, Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com><C-R>=gyrlib#EatChar('\s')<CR>
@@ -1306,10 +1321,11 @@ if has("gui_running")
     set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
     "set guifont=Inconsolata\ 10
     "set guifont=Inconsolata-dz-Powerline \10
-    "colorscheme gyrcolor
-    let g:solarized_visibility="high"
-    "let g:solarized_visibility="low"
     set background=dark
+    "colorscheme gyrcolor
+    let g:solarized_contrast="high"    "default value is normal
+    let g:solarized_visibility="high"    "default value is normal
+    let g:solarized_diffmode="high"    "default value is normal
     colorscheme solarized
     let g:lightline.colorscheme = 'solarized'
     call togglebg#map("<F5>")
