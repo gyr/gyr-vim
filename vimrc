@@ -27,7 +27,7 @@ for s:dir in s:list_dir
 endfor
 
 let g:netrw_home = s:base_dir
-let g:netrw_winsize=20
+let g:netrw_winsize=10
 
 filetype plugin indent off
 syntax off
