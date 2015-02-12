@@ -89,7 +89,7 @@ if g:gyrplugin_map_keys
     "nnoremap <unique><leader><Space> :MRU <C-z><S-Tab>
     nnoremap <unique><leader>d2u :set lz<Bar>call gyrlib#DosToUnix()<Bar>set nolz<CR>
 
-    cab eu MRU <C-z><S-Tab>
+    "cab eu MRU <C-z><S-Tab>
 endif
 
 "}}}2
