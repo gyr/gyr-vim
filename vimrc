@@ -325,6 +325,7 @@ endif
 set encoding=utf-8
 let &termencoding = &encoding
 let &fileencoding = &encoding
+let &fileencodings = &encoding
 
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
@@ -387,6 +388,16 @@ endif
 " Disable Motorola Settings
 let g:MotorolaLoadSettings = 1
 
+" GitGutter:{{{3
+try
+    highlight link GitGutterAdd DiffAdd
+    highlight link GitGutterChange DiffChange
+    highlight link GitGutterDelete DiffDelete
+    highlight link GitGutterChangeDelete GitGutterChangeLineDefault
+catch /.*/
+    echoerr "Failed to load GitGutter functions"
+endtry
+" }}}3
 " Matchit:{{{3
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
@@ -406,6 +417,8 @@ let g:syntastic_auto_jump = 2
 "let g:syntastic_warning_symbol = '»'
 let g:syntastic_error_symbol =  'E'
 let g:syntastic_warning_symbol = 'W'
+let g:syntastic_style_error_symbol = 'e'
+let g:syntastic_style_warning_symbol = 'w'
 
 " lightline: {{{3
 if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
@@ -1164,9 +1177,16 @@ endtry
 
 " Gitv:{{{3
 try
-    nnoremap <silent><unique><Leader>g :Gitv<CR>
+    nnoremap <silent><unique><Leader>gv :Gitv<CR>
 catch /.*/
     echoerr "Failed to load Gitv functions"
+endtry
+
+" GitGutter:{{{3
+try
+    nnoremap <silent><unique><Leader>gg :GitGutterToggle<CR>
+catch /.*/
+    echoerr "Failed to load GitGutter functions"
 endtry
 
 " Syntastic:{{{3
