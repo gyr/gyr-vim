@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:  xzcutorplugin.vim
 " Update: 20110906
 " (C) Copyright 2011 Gustavo Yokoyama Ribeiro

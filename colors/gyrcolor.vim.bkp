@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:   gyr_color.vim
 " Update: 20101101 16:41:33
 " (C) Copyright 2010 Gustavo Yokoyama Ribeiro

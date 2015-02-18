@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:  .vimrc
 " Update: 20120309
 " (C) Copyright 2012 Gustavo Yokoyama Ribeiro
@@ -793,7 +793,7 @@ augroup Gpg
     autocmd BufReadPost,FileReadPost *.gpg set nobinary
     " Convert all text to encrypted text before writing
     autocmd BufWritePre,FileWritePre *.gpg set binary
-    autocmd BufWritePre,FileWritePre *.gpg :%!gpg -e -r 'Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>' 2>/dev/null
+    autocmd BufWritePre,FileWritePre *.gpg :%!gpg -e -r 'Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>' 2>/dev/null
     " Undo all steath stuffs, back to normal text
     autocmd BufWritePost,FileWritePost *.gpg undo
 augroup END
@@ -1306,7 +1306,7 @@ cab ekf;; edit $HOME/work/powerkvm/kimchi-framework/**/*<C-R>=gyrlib#EatChar('\s
 cab e.;; edit <C-R>=expand("%:p:h")<CR>/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 iab gyr;; Gustavo Yokoyama Ribeiro<C-R>=gyrlib#EatChar('\s')<CR>
-iab gyrmail;; Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com><C-R>=gyrlib#EatChar('\s')<CR>
+iab gyrmail;; Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch><C-R>=gyrlib#EatChar('\s')<CR>
 iab ts;; <C-R>=strftime("%Y%m%d %H:%M:%S")<cr><C-R>=gyrlib#EatChar('\s')<CR>
 iab dt;; <C-R>=strftime("%Y%m%d")<cr><C-R>=gyrlib#EatChar('\s')<CR>
 

@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:   sh.vim
 " Update: 20110502 23:56:46
 " (C) Copyright 2010 Gustavo Yokoyama Ribeiro

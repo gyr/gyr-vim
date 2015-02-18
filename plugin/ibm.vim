@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:   ibm.vim
 " Update: 20100814 03:12:06
 " Usage:  To enable theses settings g:IBMLoadSettings shall be non-zero.

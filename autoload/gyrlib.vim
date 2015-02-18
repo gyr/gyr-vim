@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:   gyrlib.vim
 " Update: 20100822 01:44:24
 " (C) Copyright 2010 Gustavo Yokoyama Ribeiro
@@ -36,7 +36,7 @@ function! gyrlib#AddFh(comment_char, comment_type)
     endif
     call append(l:line, repeat(a:comment_char, 80))
     call append((l:line+1), a:comment_char)
-    call append((l:line+2), a:comment_char.' Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>')
+    call append((l:line+2), a:comment_char.' Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>')
     call append((l:line+3), a:comment_char.' File:  '.expand("%:t"))
     call append((l:line+4), a:comment_char.' Update: '.strftime("%Y%m%d"))
     call append((l:line+5), a:comment_char.' (C) Copyright '.strftime("%Y").' Gustavo Yokoyama Ribeiro')

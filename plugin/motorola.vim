@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro <gustavoyr+vim AT gmail DOT com>
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
 " File:   motorola.vim
 " Update: 20100814 03:12:15
 " Usage:  To disable theses settings g:MotorolaLoadSettings shall be non-zero.
