@@ -514,7 +514,7 @@ if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/b
 
     augroup AutoSyntastic
       autocmd!
-      autocmd BufWritePost *.c,*.cpp,*.py,*.pl,*.sh,*.vim call s:syntastic()
+      autocmd BufWritePost *.c,*.cpp,*.py,*.pl,*.sh,*.vim,*.spec,*.xml,*.py.in call s:syntastic()
     augroup END
     function! s:syntastic()
       SyntasticCheck
@@ -1282,33 +1282,33 @@ endtry
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " abbreviation for the current file name
 " Equivalents to <C-R>%
-"ab file;; <C-R>=expand("%:t")<CR><C-R>=gyrlib#EatChar('\s')<CR>
-"ab file;; <C-R>=expand("%F")<CR><C-R>=gyrlib#EatChar('\s')<CR>
-ab file;; <C-R>%<C-R>=gyrlib#EatChar('\s')<CR>
-ab dirfile;; <C-R>=expand("%:p")<CR><C-R>=gyrlib#EatChar('\s')<CR>
-ab dir;; <C-R>=expand("%:p:h")<CR><C-R>=gyrlib#EatChar('\s')<CR>
+"ab file,, <C-R>=expand("%:t")<CR><C-R>=gyrlib#EatChar('\s')<CR>
+"ab file,, <C-R>=expand("%F")<CR><C-R>=gyrlib#EatChar('\s')<CR>
+ab file,, <C-R>%<C-R>=gyrlib#EatChar('\s')<CR>
+ab dirfile,, <C-R>=expand("%:p")<CR><C-R>=gyrlib#EatChar('\s')<CR>
+ab dir,, <C-R>=expand("%:p:h")<CR><C-R>=gyrlib#EatChar('\s')<CR>
 
 " Paste in commnad line the word under cursor
-"cab p;; <C-R><C-W>
+"cab p,, <C-R><C-W>
 " If forgot to sudo vim a file, do that with :w!!
-"cab w;; %!sudo tee > /dev/null %<CR>
-"cab w;; %!sudo tee > /dev/null %<CR>
-cab wsudo;; w !sudo tee % > /dev/null <CR>
+"cab w,, %!sudo tee > /dev/null %<CR>
+"cab w,, %!sudo tee > /dev/null %<CR>
+cab wsudo,, w !sudo tee % > /dev/null <CR>
 " Copy the entire buffer to the system clipboard
-cab y;; %y+<CR>
+cab y,, %y+<CR>
 
-cab eg;; edit $HOME/.gyr.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ev;; edit $HOME/.vim/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ei;; edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab eko;; edit $HOME/work/powerkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab eki;; edit $HOME/work/powerkvm/kimchi/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ekf;; edit $HOME/work/powerkvm/kimchi-framework/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab e.;; edit <C-R>=expand("%:p:h")<CR>/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eg,, edit $HOME/.gyr.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ev,, edit $HOME/.vim/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ei,, edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eko,, edit $HOME/work/powerkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eki,, edit $HOME/work/powerkvm/kimchi/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ekf,, edit $HOME/work/powerkvm/kimchi-framework/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab e.,, edit <C-R>=expand("%:p:h")<CR>/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
-iab gyr;; Gustavo Yokoyama Ribeiro<C-R>=gyrlib#EatChar('\s')<CR>
-iab gyrmail;; Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch><C-R>=gyrlib#EatChar('\s')<CR>
-iab ts;; <C-R>=strftime("%Y%m%d %H:%M:%S")<cr><C-R>=gyrlib#EatChar('\s')<CR>
-iab dt;; <C-R>=strftime("%Y%m%d")<cr><C-R>=gyrlib#EatChar('\s')<CR>
+iab gyr,, Gustavo Yokoyama Ribeiro<C-R>=gyrlib#EatChar('\s')<CR>
+iab gyrmail,, Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch><C-R>=gyrlib#EatChar('\s')<CR>
+iab ts,, <C-R>=strftime("%Y%m%d %H:%M:%S")<cr><C-R>=gyrlib#EatChar('\s')<CR>
+iab dt,, <C-R>=strftime("%Y%m%d")<cr><C-R>=gyrlib#EatChar('\s')<CR>
 
 "}}}1
 "===============================================================================

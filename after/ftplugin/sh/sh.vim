@@ -22,7 +22,7 @@ setlocal errorformat=%f:\ %l:\ %m
 
 call gyrlib#ProgTextMode()
 
-let b:syntastic_checkers=['sh', 'bash']
+let b:syntastic_checkers=['sh', 'bash', 'shellcheck', 'bashate']
 let b:syntastic_sh_args='-n'
 let b:syntastic_sh_sh_args='-n'
 let b:syntastic_sh_bash_args='-n'
@@ -38,8 +38,8 @@ let b:syntastic_sh_bash_args='-n'
 "iab <buffer> bash,, #!/bin/bash<C-R>=gyrlib#EatChar('\s')<CR>
 "iab <buffer> sb,, #!/bin/sh<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> fh,, <C-R>=gyrlib#AddFh('#', 'full')<CR><C-R>=gyrlib#EatChar('\s')<CR>
-iab <buffer> gh,, [ $# -eq 1 -a "$1" = '--help' ] && { gyr-print-helper $0; exit 0; }<C-R>=gyrlib#EatChar('\s')<CR>
-iab <buffer> ge,, { gyr-print -e ${0##*/} ""; exit 1; }<C-R>=gyrlib#EatChar('\s')<CR>
+iab <buffer> gh,, [ $# -eq 1 -a "$1" = '--help' ] && { gyr-print-helper "$0"; exit 0; }<C-R>=gyrlib#EatChar('\s')<CR>
+iab <buffer> ge,, { gyr-print -e "${0##*/}" ""; exit 1; }<C-R>=gyrlib#EatChar('\s')<CR>
 iab <buffer> error,, # Always exit on errors<CR>
             \set -e<CR>
             \# Undefined variables, we don't like you<CR>

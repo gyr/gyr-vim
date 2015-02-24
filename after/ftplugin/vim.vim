@@ -27,11 +27,6 @@ setlocal tags+=,~/.vim-tmp/tags/vimtags
 
 " }}}1
 "===============================================================================
-" Autocommand:{{{1
-"au BufWritePre <buffer> call <SID>UpdateDate()
-
-"}}}1
-"===============================================================================
 " Abbreviation:{{{1
 iab <buffer> fh,, <C-R>=gyrlib#AddFh('"', 'short')<CR><C-R>=gyrlib#EatChar('\s')<CR>
 

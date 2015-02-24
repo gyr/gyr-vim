@@ -15,6 +15,12 @@ endif
 let s:keep_cpo = &cpo
 set cpo&vim
 "===============================================================================
+" Settings:{{{1
+
+let b:syntastic_checkers=['rpmlint']
+
+" }}}1
+"===============================================================================
 " Mapping:{{{1
 nnoremap <buffer><Leader>r :call <SID>RpmBuild("<C-R>=expand("%:p")<CR>")<CR>
 

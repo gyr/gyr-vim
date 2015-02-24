@@ -1,13 +1,13 @@
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Author: Gustavo Yokoyama Ribeiro
-" File:   xml.vim
-" Update: 20100814 03:20:30
-" (C) Copyright 2010 Gustavo Yokoyama Ribeiro
+" Author: Gustavo Yokoyama Ribeiro <gyr AT protonmail DOT ch>
+" File:  json.vim
+" Update: 20150224
+" (C) Copyright 2015 Gustavo Yokoyama Ribeiro
 " Licensed under CreativeCommons Attribution-ShareAlike 3.0 Unsupported
 " http://creativecommons.org/licenses/by-sa/3.0/ for more info.
 "
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if &cp
     finish
@@ -17,23 +17,21 @@ set cpo&vim
 "===============================================================================
 " Settings:{{{1
 
-setlocal omnifunc& omnifunc=xmlcomplete#CompleteTags
-
-let b:syntastic_checkers=['xmllint']
+let b:syntastic_checkers=['jsonlint']
 
 " }}}1
 "===============================================================================
 " Mapping:{{{1
 " check syntax
-noremap <buffer><Leader>s :!xmllint %<CR>
+noremap <buffer><Leader>s :!jsonlint %<CR>
 
 "}}}1
 "===============================================================================
-if !exists('s:load_xml')
-    let s:load_xml = 1
+if !exists('s:load_json')
+    let s:load_json = 1
 endif
 
-if s:load_xml
+if s:load_json
     "===============================================================================
     " Functions:{{{1
 
