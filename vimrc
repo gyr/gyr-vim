@@ -533,11 +533,7 @@ if isdirectory($HOME."/.vim/bundle/vimwiki")
     let gyr_wiki.path = '~/.gyr.d/vimwiki/'
     let gyr_wiki.path_html = '~/.gyr.d/public_html/'
     let gyr_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'perl': 'perl', 'conf': 'conf', 'fstab': 'fstab', 'deb': 'debsources', 'resolv': 'resolv', 'xml': 'xml'}
-    let ibm_wiki = {}
-    let ibm_wiki.path = '~/.ibm.d/vimwiki/'
-    let ibm_wiki.path_html = '~/.ibm.d/public_html/'
-    let ibm_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'perl': 'perl', 'conf': 'conf', 'fstab': 'fstab', 'deb': 'debsources', 'resolv': 'resolv', 'xml': 'xml'}
-    let g:vimwiki_list = [gyr_wiki, ibm_wiki]
+    let g:vimwiki_list = [gyr_wiki]
     let g:vimwiki_hl_headers = 1
     let g:vimwiki_hl_cb_checked = 1
     "let g:vimwiki_folding = 1
@@ -988,7 +984,6 @@ nnoremap <silent><unique><Leader>z :vnew<Bar>set buftype=nofile<Bar>echo "Scratc
 nnoremap <unique><Leader>e :Lex<CR>
 "nnoremap <unique><Leader>eg :edit $HOME/.gyr.d/**/*
 "nnoremap <unique><Leader>ev :edit $HOME/.vim/**/*
-"nnoremap <unique><Leader>ei :edit $HOME/.ibm.d/**/*
 "nnoremap <unique><Leader>eko :edit $HOME/work/powerkvm/kop/**/*
 "nnoremap <unique><Leader>eki :edit $HOME/work/powerkvm/kimchi/**/*
 "nnoremap <unique><Leader>e/ :edit **/*
@@ -1301,10 +1296,6 @@ cab y,, %y+<CR>
 
 cab eg,, edit $HOME/.gyr.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 cab ev,, edit $HOME/.vim/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ei,, edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab eko,, edit $HOME/work/powerkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab eki,, edit $HOME/work/powerkvm/kimchi/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ekf,, edit $HOME/work/powerkvm/kimchi-framework/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 cab e.,, edit <C-R>=expand("%:p:h")<CR>/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 iab gyr,, Gustavo Yokoyama Ribeiro<C-R>=gyrlib#EatChar('\s')<CR>

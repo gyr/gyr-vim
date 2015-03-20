@@ -68,8 +68,7 @@ let b:syntastic_checkers=['python', 'flake8', 'pylint']
 "let b:syntastic_python_checker_args='--ignore=E501'
 let b:syntastic_python_flake8_args='--ignore=E501'
 "let b:syntastic_python_pylint_args='--disable=invalid-name,line-too-long'
-let b:syntastic_python_pylint_args='--argument-rgx=[a-z_]_?[a-zA-Z0-9_]*$ --variable-rgx=[a-z_]_?[a-zA-Z0-9_]*$ --method-rgx=[a-z_]_?[a-zA-Z0-9_]*$'
-"let b:syntastic_python_pylint_args='--argument-rgx=[a-z][a-zA-Z0-9]*$ --variable-rgx=[a-z_]_?[a-zA-Z0-9]*$ --method-rgx=[a-z_]_?[a-zA-Z0-9]*$'
+let b:syntastic_python_pylint_args='--argument-rgx=[a-z][a-zA-Z0-9]*$ --variable-rgx=[a-z_]_?[a-zA-Z0-9]*$ --method-rgx=[a-z_]_?[a-zA-Z0-9]*$'
 "let b:syntastic_quiet_messages = { "regex": ['E501 line too long', 'E501',], }
 "let b:syntastic_quiet_messages = { "regex": ['E501',], }
 

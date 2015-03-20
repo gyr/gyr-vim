@@ -18,12 +18,45 @@ let s:keep_cpo = &cpo
 set cpo&vim
 
 "===============================================================================
+" Settings:{{{1
+
+" Plugin:{{{2
+
+" Vimwiki: {{{3
+if isdirectory($HOME."/.vim/bundle/vimwiki")
+    let ibm_wiki = {}
+    let ibm_wiki.path = '~/.ibm.d/vimwiki/'
+    let ibm_wiki.path_html = '~/.ibm.d/public_html/'
+    let ibm_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'perl': 'perl', 'conf': 'conf', 'fstab': 'fstab', 'deb': 'debsources', 'resolv': 'resolv', 'xml': 'xml'}
+    let ibm_list = [ibm_wiki]
+    let g:vimwiki_list = g:vimwiki_list + ibm_list
+endif
+
+" }}}1
+"===============================================================================
 " Autocmd:{{{1
-autocmd BufNewFile,BufRead,BufEnter *.dat set filetype=conf
+augroup Ibm
+    autocmd BufNewFile,BufRead,BufEnter *.dat set filetype=conf
+    autocmd FileType python
+                \ let b:pylintrc = findfile('pylintrc', '/home/gyr/work/powerkvm/kop/.;') |
+                \ if b:pylintrc != '' |
+                \   let b:syntastic_python_pylint_args='--rcfile='.b:pylintrc |
+                \ endif
+augroup END
+
+" }}}1
+"===============================================================================
+" Mapping:{{{1
+"nnoremap <unique><Leader>ei :edit $HOME/.ibm.d/**/*
 
 " }}}1
 "===============================================================================
 " Abbreviations:{{{1
+
+cab ei,, edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eko,, edit $HOME/work/powerkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eki,, edit $HOME/work/powerkvm/kimchi/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ekf,, edit $HOME/work/powerkvm/kimchi-framework/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 " }}}1
 "===============================================================================
