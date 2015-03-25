@@ -1182,6 +1182,10 @@ endtry
 " GitGutter:{{{3
 try
     nnoremap <silent><unique><Leader>gg :GitGutterToggle<CR>
+    nnoremap <silent><unique><Leader>gs :GitGutterStageHunk<CR>
+    nnoremap <silent><unique><Leader>gr :GitGutterRevertHunk<CR>
+    nnoremap [g :GitGutterPrevHunk<CR>
+    nnoremap ]g :GitGutterNextHunk<CR>
 catch /.*/
     echoerr "Failed to load GitGutter functions"
 endtry
