@@ -19,6 +19,8 @@ set cpo&vim
 
 "===============================================================================
 " Settings:{{{1
+set path+=$HOME/.ibm.d/**
+set path+=$HOME/work/powerkvm/kop/**
 
 " Plugin:{{{2
 

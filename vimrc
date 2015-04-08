@@ -69,10 +69,9 @@ set whichwrap+=<,>,[,]
 set path+=.
 set path+=$HOME
 set path+=$HOME/.gyr.d
-set path+=$HOME/.gyr.d/dotfiles
-set path+=$HOME/.gyr.d/info
-set path+=$HOME/.gyr.d/bkp
-set path+=$HOME/.gyr.d/scripts
+set path+=$HOME/.gyr.d/**
+set path+=$HOME/.vim
+set path+=$HOME/.vim/**
 set incsearch       " Search while typing
 set magic           " Use magic patterns  (extended regular expressions) in search patterns
 set ignorecase      " Ignore case on search
@@ -236,7 +235,7 @@ set cinoptions+=l1,t0,i0,(0
 "-------------------------------------------------------------------------------
 " Folding:{{{2
 "set foldcolumn=3      " 2 lines of column for fold showing, always
-set foldopen+=insert,jump " add this stuff to open folder as well
+set foldopen+=hor,insert,jump,mark,percent,quickfix,search,tag,undo " add this stuff to open folder as well
 set foldmethod=syntax " fold on syntax automatically, always
 " http://dhruvasagar.com/2013/03/28/vim-better-foldtext
 function! NeatFoldText()
@@ -287,7 +286,8 @@ set updatetime=9000 " write swap file to disk after 9 inactive seconds
 set history=1000     " size in line of history
 set wildcharm=<C-z>  " see its use on mapping
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.a,*.so,*.exe,*.pyc,*.pyo,*.bak,*~,*.jpg,*.png,*.gif,*.class " ignore this extensions
+set wildignore+=*.o,*.obj,*.a,*.so,*.exe,*.pyc,*.pyo,*.bak,*~,*.jpg,*.png,*.gif,*.class,*.swp " ignore this extensions
+set wildignore+=*//.git/**/*,*/.hg/**/*,*/.svn/**/*
 if exists("&wildignorecase")
     set wildignorecase
 endif
@@ -904,7 +904,7 @@ vnoremap <unique><Leader>` o<ESC>i`<ESC>gvol<ESC>a`<ESC>l
 "
 " https://github.com/paradigm/dotfiles/blob/master/.vimrc
 " Create new text objects for pairs of identical characters
-for char in ['$',',','.','/','-','=',':']
+for char in ['$',',','.','/','-','=',':','_','*','+','%',';']
     exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
     exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
     exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
@@ -1032,14 +1032,12 @@ nnoremap g# yiw:let c=col('.')<CR>:let @/="^.*\\%".c.'c\zs'.@"<CR>N
 " -- Changes up/down arrow keys to behave screen-wise, rather than file-wise.
 "    Behaviour is unchanged in operator-pending mode.
 "    Behaviour is unchanged for the j and k bindings.
-noremap k gk
-noremap j gj
+nnoremap <expr>k v:count == 0 ? 'gk' : 'k'
+nnoremap <expr>j v:count == 0 ? 'gj' : 'j'
 "noremap 0 g0
 "noremap $ g$
 "noremap ^ g^
 
-noremap gk k
-noremap gj j
 "noremap g0 0
 "noremap g$ $
 "noremap g^ ^
