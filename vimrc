@@ -541,8 +541,9 @@ if isdirectory($HOME."/.vim/bundle/vimwiki")
     let g:vimwiki_html_header_numbering = 1
 endif
 
-" [DISABLE]Ultisnips:{{{3
-"let g:UltiSnipsExpandTrigger="<S-Tab>"
+" Ultisnips:{{{3
+let g:UltiSnipsExpandTrigger="<leader><space>"
+let g:UltiSnipsEditSplit="vertical"
 
 " [DISABLE]Fuzzyfinder:{{{3
 "if isdirectory($HOME."/.vim/bundle/vim-fuzzyfinder")
@@ -709,8 +710,8 @@ augroup Gyr
                 \ endif
 
     " Cursorline
-    autocmd WinLeave * setlocal nocursorline
-    autocmd WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline nocursorcolumn
+    autocmd WinEnter * setlocal cursorline cursorcolumn
 
     "Change to directory of the current file
     "autocmd BufEnter * if &ft != 'help' | lcd %:p:h | endif
@@ -916,13 +917,13 @@ endfor
 "xnoremap af :<C-U>silent!normal![zV]z<CR>
 "onoremap af :normal Vaf<CR>
 
-noremap <unique><Leader>sl :source $HOME/.vim-tmp/sessions/*
+noremap <unique><Leader>sl :source $HOME/.vim-tmp/sessions/*.vim<C-z>
 
 " insert shebang
 inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . &filetype
 
 " format line
-noremap <unique><Leader>f gqip
+"noremap <unique><Leader>f gqip
 "}}}2
 "------------------------------------------------------------------------
 " Insert Mode:{{{2
@@ -970,9 +971,9 @@ nnoremap <expr> gy "`[".getregtype(v:register)[0]."`]"
 "nnoremap <silent><unique>]b :bnext<CR>
 "nnoremap <silent><unique>[B :bfirst<CR>
 "nnoremap <silent><unique>]B :blast<CR>
-"nnoremap <silent><unique><Leader>b :ls<bar>let nr = input("Which one: ")<Bar>exec "b".nr<CR>
+nnoremap <silent><unique><Leader>b :ls<bar>let nr = input("Which one: ")<Bar>exec "b".nr<CR>
 " OR see wildcharm on setting above
-nnoremap <unique><Leader>b :buffer <C-z>*
+"nnoremap <unique><Leader>b :buffer <C-z>*
 "nnoremap <silent><unique><Leader>c :clist<bar>let nr = input("Which one: ")<Bar>exec "cc".nr<CR>
 "nnoremap <silent><unique><Leader>b :ls<CR>:sb<Space>
 " Create a scratch buffer

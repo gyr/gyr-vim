@@ -67,7 +67,7 @@ if g:gyrplugin_map_keys
     execute "noremap <silent><unique>" g:gyrplugin_map_prefix."q" ":set lz<Bar>call gyrlib#BufcloseCloseIt()<Bar>set nolz<CR>"
     "noremap <silent><unique><Leader>c :set lz<Bar>call gyrlib#CommentOnOff()<Bar>set nolz<CR>
     execute "noremap <silent><unique>" g:gyrplugin_map_prefix."ss" ":set lz<Bar>call gyrlib#SaveCurrentSession()<Bar>set nolz<CR>"
-    "execute "noremap <silent><unique>" g:gyrplugin_map_prefix."f" ":set lz<Bar>call gyrlib#FindMate()<Bar>set nolz<CR>"
+    execute "noremap <silent><unique>" g:gyrplugin_map_prefix."f" ":set lz<Bar>call gyrlib#FindMate()<Bar>set nolz<CR>"
     "noremap <silent><unique><Leader>h :set lz<Bar>call gyrlib#ToggleShowEvilspace()<Bar>set nolz<CR>
     "execute "noremap <silent><unique>" g:gyrplugin_map_prefix."r" ":set lz<Bar>call gyrlib#RunShellCommand()<Bar>set nolz<CR>"
 

@@ -68,6 +68,7 @@ endfunction
 
 " gyrlib#CallbackItem:{{{3
 function gyrlib#CallbackItem(prompt, listener, list)
+    echo "\n"
     if !empty(a:list)
         let l:index = 0
         for item in a:list
@@ -84,10 +85,10 @@ function gyrlib#CallbackItem(prompt, listener, list)
                     try
                         call a:listener.onComplete(a:list[item], '')
                     catch
-                        echohl WarningMsg | echo "ERROR: Out of range" | echohl None
+                        echohl WarningMsg | echo "\nERROR: Out of range" | echohl None
                     endtry
                 else
-                    echohl WarningMsg | echo "ERROR: Not a number" | echohl None
+                    echohl WarningMsg | echo "\nERROR: Not a number" | echohl None
                 endif
             endfor
         else
@@ -186,12 +187,12 @@ function! gyrlib#SaveCurrentSession()
                     call mkdir(l:session_dir, "p")
                 endif
                 execute "cd / | mksession!" l:session_dir."/".l:session_name.l:session_ext." | cd"
-                echo "Session" l:session_name "saved!"
+                echo "\nSession" l:session_name "saved!"
             catch
-                echohl WarningMsg | echo "ERROR: Session not saved!" | echohl None
+                echohl WarningMsg | echo "\nERROR: Session not saved!" | echohl None
             endtry
         else
-            echohl WarningMsg | echo "No session file name entered!" | echohl None
+            echohl WarningMsg | echo "\nNo session file name entered!" | echohl None
         endif
     endtry
 endfunction
@@ -208,7 +209,7 @@ function! gyrlib#FindMate()
         "call fuf#callbackitem#launch('', 0, ">File>", s:listenerFindMate, list, 0)
         call gyrlib#CallbackItem("Select file number", s:listenerFindMate, list)
     else
-        echohl WarningMsg | echo "No file pattern entered!" | echohl None
+        echohl WarningMsg | echo "\nNo file pattern entered!" | echohl None
     endif
 endfunction
 " }}}3
@@ -451,7 +452,7 @@ function! s:listenerFindMate.onComplete(item, method)
 endfunction
 
 function! s:listenerFindMate.onAbort()
-    echohl WarningMsg | echo "Find file aborted!" | echohl None
+    echohl WarningMsg | echo "\nFind file aborted!" | echohl None
 endfunction
 " }}}3
 
