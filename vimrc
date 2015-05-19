@@ -93,11 +93,11 @@ set linebreak nolist   " When wrap is on break lines at 'breakat', do not add <E
 if has("multi_byte")
     set showbreak=↪\      " String to put at the start of lines that have been wrapped (wrap must be on). number must be off.
     set fillchars+=diff:⣿,vert:│
-    set listchars+=tab:▸▸,trail:·,eol:¬,extends:»,precedes:«,nbsp:ø
+    set listchars+=tab:▸▸,trail:␣,eol:¬,extends:»,precedes:«,nbsp:ø,space:·
 else
     set showbreak=>     " String to put at the start of lines that have been wrapped (wrap must be on). number must be off.
     set fillchars+=diff:-,vert:|
-    set listchars+=tab:>-,trail:.,eol:$,extends:>,precedes:<,nbsp:%
+    set listchars+=tab:>-,trail:_,eol:$,extends:>,precedes:<,nbsp:%,space:.
 endif
 set sidescroll=5    " Keep 5 columns left/right the cursor
 set sidescrolloff=10
@@ -370,6 +370,7 @@ if &t_Co > 16
         let g:solarized_visibility="high"  "default value is normal
         let g:solarized_diffmode="high"    "default value is normal
         colorscheme solarized
+        hi! link SpecialKey NonText
         call togglebg#map("<F5>")
     catch /.*/
         echoerr "E: Failed to set colorscheme"
@@ -1344,6 +1345,7 @@ if has("gui_running")
     let g:solarized_visibility="high"    "default value is normal
     let g:solarized_diffmode="high"    "default value is normal
     colorscheme solarized
+    hi! link SpecialKey NonText
     let g:lightline.colorscheme = 'solarized'
     call togglebg#map("<F5>")
 endif
