@@ -543,7 +543,7 @@ if isdirectory($HOME."/.vim/bundle/vimwiki")
 endif
 
 " Ultisnips:{{{3
-let g:UltiSnipsExpandTrigger="<leader><space>"
+let g:UltiSnipsExpandTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
 " [DISABLE]Fuzzyfinder:{{{3
@@ -942,6 +942,7 @@ inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . 
 "nnoremap <unique>Y y$
 noremap <unique>Y y$
 noremap <Leader>y "+y
+noremap <Leader>d "+d
 noremap <Leader>px :set paste<CR>:put  *<CR>:set nopaste<CR>
 noremap <Leader>p :set paste<CR>:put  +<CR>:set nopaste<CR>
 noremap <Leader>Px :set paste<CR>:put! *<CR>:set nopaste<CR>
