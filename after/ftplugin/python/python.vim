@@ -72,6 +72,15 @@ let b:syntastic_python_pylint_args='--argument-rgx=[a-z][a-zA-Z0-9]*$ --variable
 "let b:syntastic_quiet_messages = { "regex": ['E501 line too long', 'E501',], }
 "let b:syntastic_quiet_messages = { "regex": ['E501',], }
 
+"}}}1
+"===============================================================================
+" Autocommand:{{{1
+" Code static analysis
+"au BufWritePost * :silent make | redraw!
+
+"au QuickFixCmdPost [^l]* nested cwindow
+"au QuickFixCmdPost    l* nested lwindow
+
 " }}}1
 "===============================================================================
 " Tag Path:{{{1

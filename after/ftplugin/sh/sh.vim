@@ -17,8 +17,9 @@ set cpo&vim
 "===============================================================================
 " Settings:{{{1
 
-setlocal makeprg=sh\ -n\ %
-setlocal errorformat=%f:\ %l:\ %m
+"setlocal makeprg=sh\ -n\ %
+"setlocal errorformat=%f:\ %l:\ %m
+setlocal makeprg=shellcheck\ -f\ gcc\ %
 
 call gyrlib#ProgTextMode()
 
@@ -31,6 +32,12 @@ let b:syntastic_sh_bash_args='-n'
 "===============================================================================
 " Autocommand:{{{1
 "au BufWritePre <buffer> call <SID>UpdateDate()
+
+" Code static analysis
+"au BufWritePost * :silent make | redraw!
+
+"au QuickFixCmdPost [^l]* nested cwindow
+"au QuickFixCmdPost    l* nested lwindow
 
 "}}}1
 "===============================================================================
