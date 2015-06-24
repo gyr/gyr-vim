@@ -1051,11 +1051,6 @@ nnoremap <unique><S-Tab> <C-O>
 "nnoremap <unique>[j <C-o>
 "nnoremap <unique>]j <C-i>
 
-" unset search highlight
-"nnoremap <silent><Leader>/ :let @/=""<CR>  :echo 'Highlights Cleared'<CR>
-"nnoremap <silent><unique><Leader>/ :nohls<Bar>echo 'Highlights Cleared'<CR>
-nnoremap <unique><Esc><Esc> <Esc>:nohlsearch<Bar>echo 'Highlights Cleared'<CR>
-
 nnoremap <unique><Leader>* [I:let nr = input("Which one: ")<Bar>exec "normal! ".nr."[\t"<CR>
 
 " Search the selected text

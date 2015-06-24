@@ -90,6 +90,11 @@ if g:gyrplugin_map_keys
     nnoremap <unique><leader>d2u :set lz<Bar>call gyrlib#DosToUnix()<Bar>set nolz<CR>
 
     "cab eu MRU <C-z><S-Tab>
+    "
+    " unset search highlight
+    "nnoremap <silent><Leader>/ :let @/=""<CR>  :echo 'Highlights Cleared'<CR>
+    nnoremap <BS> <Esc>:nohlsearch<Bar>echo 'Highlights Cleared'<CR>
+
 endif
 
 "}}}2
