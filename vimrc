@@ -114,7 +114,8 @@ set numberwidth=1   " Use 1 col + 1 space for numbers
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch        " Highligh search
-    set background=dark " Use colors which look better on the background
+    "set background=dark " Use colors which look better on the background
+    set background=light " Use colors which look better on the background
     set synmaxcol=2000  " Syntax coloring lines that are too long just slows down the world
 endif
 set cursorcolumn
@@ -363,7 +364,8 @@ endif
 
 if &t_Co > 16
     try
-        set background=dark
+        "set background=dark
+        set background=light
         "colorscheme gyrcolor
         let g:solarized_termcolors=256
         let g:solarized_contrast="high"    "default value is normal
@@ -1335,7 +1337,8 @@ if has("gui_running")
     set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
     "set guifont=Inconsolata\ 10
     "set guifont=Inconsolata-dz-Powerline \10
-    set background=dark
+    "set background=dark
+    set background=light
     "colorscheme gyrcolor
     let g:solarized_contrast="high"    "default value is normal
     let g:solarized_visibility="high"    "default value is normal
