@@ -981,7 +981,8 @@ nnoremap <silent><unique><Leader>b :ls<bar>let nr = input("Which one: ")<Bar>exe
 "nnoremap <silent><unique><Leader>c :clist<bar>let nr = input("Which one: ")<Bar>exec "cc".nr<CR>
 "nnoremap <silent><unique><Leader>b :ls<CR>:sb<Space>
 " Create a scratch buffer
-nnoremap <silent><unique><Leader>z :vnew<Bar>set buftype=nofile<Bar>echo "Scratch buffer"<CR>
+nnoremap <silent><unique><Leader>zv :vnew<Bar>set buftype=nofile<Bar>echo "Scratch buffer"<CR>
+nnoremap <silent><unique><Leader>zs :new<Bar>set buftype=nofile<Bar>echo "Scratch buffer"<CR>
 
 "}}}2
 "-------------------------------------------------------------------------------
