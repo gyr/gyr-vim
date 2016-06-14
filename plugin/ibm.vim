@@ -56,9 +56,10 @@ augroup END
 " Abbreviations:{{{1
 
 cab ei,, edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ep,, edit $HOME/work/powerkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ek,, edit $HOME/work/powerkvm/kimchi/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab ew,, edit $HOME/work/powerkvm/kimchi-framework/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ek,, edit $HOME/work/pkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab et,, edit $HOME/work/pkvm/ibm-kvm-tools/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab er,, edit $HOME/work/pkvm/ibm-kvm-rpm/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab ew,, edit $HOME/work/repos/wok/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 " }}}1
 "===============================================================================
