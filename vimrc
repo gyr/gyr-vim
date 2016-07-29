@@ -433,18 +433,15 @@ if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/b
           \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
           \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
           \ },
-          \ 'component': {
-          \   'lineinfo': '⭡ %3l:%-2v',
-          \ },
           \ 'component_function': {
-          \   'modified': 'MyModified',
-          \   'readonly': 'MyReadonly',
-          \   'fugitive': 'MyFugitive',
-          \   'filename': 'MyFilename',
-          \   'fileformat': 'MyFileformat',
-          \   'filetype': 'MyFiletype',
-          \   'fileencoding': 'MyFileencoding',
-          \   'mode': 'MyMode',
+          \   'modified': 'LightLineModified',
+          \   'readonly': 'LightLineReadonly',
+          \   'fugitive': 'LigthLineFugitive',
+          \   'filename': 'LightLineFilename',
+          \   'fileformat': 'LightLineFileformat',
+          \   'filetype': 'LightLineFiletype',
+          \   'fileencoding': 'LightLineFileenconding',
+          \   'mode': 'LightLineMode',
           \ },
           \ 'component_expand': {
           \   'syntastic': 'SyntasticStatuslineFlag',
@@ -452,62 +449,55 @@ if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/b
           \ 'component_type': {
           \   'syntastic': 'error',
           \ },
-          \ 'separator': { 'left': '⮀', 'right': '⮂' },
-          \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+          \ 'subseparator': { 'left': '|', 'right': '|' }
           \ }
 
-    function! MyModified()
+    function! LightLineModified()
       return &ft =~ 'help\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
     endfunction
 
-    function! MyReadonly()
-      return &ft !~? 'help\|gundo' && &readonly ? '⭤' : ''
+    function! LightLineReadonly()
+        return &ft !~? 'help\|gundo' && &readonly ? 'RO' : ''
     endfunction
 
-    "function! MyFilename()
-    "  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-    "        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-    "        \ ('' != MyModified() ? ' ' . MyModified() : '')
-    "endfunction
-    function! MyFilename()
+    function! LightLineFilename()
         let fname = expand('%:t')
         return fname == '__Tagbar__' ? g:lightline.fname :
                     \ fname =~ '__Gundo' ? '' :
-                    \ ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+                    \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
                     \ ('' != fname ? fname : '[No Name]') .
-                    \ ('' != MyModified() ? ' ' . MyModified() : '')
+                    \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
     endfunction
 
-    function! MyFugitive()
+    function! LigthLineFugitive()
         try
             if expand('%:t') !~? 'Tagbar\|Gundo' && exists('*fugitive#head')
-                let mark = '⭠ '  " edit here for cool mark
-                let _ = fugitive#head()
-                return strlen(_) ? mark._ : ''
+                let branch = fugitive#head()
+                return branch !=# '' ? ' '.branch : ''
             endif
         catch
         endtry
         return ''
     endfunction
 
-    function! MyFileformat()
-      return winwidth('.') > 70 ? &fileformat : ''
+    function! LightLineFileformat()
+      return winwidth(0) > 70 ? &fileformat : ''
     endfunction
 
-    function! MyFiletype()
-      return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+    function! LightLineFiletype()
+      return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
     endfunction
 
-    function! MyFileencoding()
-      return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    function! LightLineFileenconding()
+      return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
     endfunction
 
-    function! MyMode()
+    function! LightLineMode()
         let fname = expand('%:t')
         return fname == '__Tagbar__' ? 'Tagbar' :
                 \ fname == '__Gundo__' ? 'Gundo' :
                 \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-                \ winwidth('.') > 60 ? lightline#mode() : ''
+                \ winwidth(0) > 60 ? lightline#mode() : ''
     endfunction
 
     let g:tagbar_status_func = 'TagbarStatusFunc'
