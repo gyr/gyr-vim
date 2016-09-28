@@ -45,6 +45,11 @@ setlocal softtabstop=4
 " And they really are spaces, *not* tabs
 setlocal expandtab
 
+let b:syntastic_enable_perl_checker = 1
+let b:syntastic_checkers = ['perl']
+let b:syntastic_perl_checkers = ['perl']
+let b:syntastic_perl_args = '-c'
+let b:syntastic_perl_perl_args = '-c'
 " }}}1
 "===============================================================================
 " Mapping:{{{1
