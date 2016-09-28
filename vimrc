@@ -129,21 +129,33 @@ set spelllang=en
 "-------------------------------------------------------------------------------
 " Multiple windows:{{{2
 set laststatus=2    " Sempre exibe a barra de status
-"if has('statusline')
-"    set statusline=[%n]      " buffer number
-"    set statusline+=\ %t       " file name
-"    "set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, " file enconding
-"    set statusline+=\ [%{&ff}]  " file format
-"    set statusline+=%y       " file type
-"    set statusline+=%m       " modified flag
-"    set statusline+=%r       " readonly flag
-"    set statusline+=%h       " help buffer flag
-"    set statusline+=%w       " preview window flag
-"    set statusline+=%=       " left/right separator
-"    set statusline+=%c%V,    " cursor column-virtual column number
-"    set statusline+=%l/%L    " cursor line/total lines
-"    set statusline+=\ %P     " percent through file
-"endif
+if has('statusline')
+    set statusline=
+    set statusline+=[%n]      " buffer number
+    try
+        set statusline+=%{fugitive#statusline()}
+    catch
+    endtry
+    set statusline+=\ %<%f\   " path to the file, as typed or relative to
+                                 " current directory
+    set statusline+=%m       " modified flag
+    set statusline+=%r       " readonly flag
+    set statusline+=%h       " help buffer flag
+    set statusline+=%w       " preview window flag
+    set statusline+=%=       " left/right separator
+    try
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+    catch
+    endtry
+    set statusline+=\|%{&ff} " file format
+    set statusline+=\|%{strlen(&fenc)?&fenc:'none'} " file enconding
+    set statusline+=\|%Y      " file type
+    set statusline+=\|%c%V:    " cursor column-virtual column number
+    set statusline+=%l/%L    " cursor line/total lines
+    set statusline+=\|%P     " percent through file
+endif
 set equalalways      " do not resize windows to the same size
 set hidden           " allow editing multiple unsaved buffers
 set splitbelow
@@ -363,28 +375,10 @@ if $TERM =~ '256color'
 endif
 
 if &t_Co > 16
-    try
-        "set background=dark
-        set background=light
-        "colorscheme gyrcolor
-        let g:solarized_termcolors=256
-        let g:solarized_contrast="high"    "default value is normal
-        let g:solarized_visibility="high"  "default value is normal
-        let g:solarized_diffmode="high"    "default value is normal
-        colorscheme solarized
-        hi! link SpecialKey NonText
-        call togglebg#map("<F5>")
-    catch /.*/
-        echoerr "E: Failed to set colorscheme"
-    endtry
-"else
-"    try
-"        let g:solarized_termcolors=16
-"        set background=dark
-"        colorscheme solarized
-"    catch /.*/
-"        echoerr "E: Failed to set colorscheme"
-"    endtry
+    set background=dark
+    colorscheme gyrcolor
+    "set background=light
+    "colorscheme solarized
 endif
 
 "}}}2
@@ -415,7 +409,6 @@ let c_hi_identifiers = 'all'
 let c_hi_libs = ['*']
 
 " syntastic:{{{3
-let g:syntastic_mode_map = { 'mode': 'passive', }
 let g:syntastic_auto_jump = 2
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -426,101 +419,6 @@ let g:syntastic_error_symbol =  'E'
 let g:syntastic_warning_symbol = 'W'
 let g:syntastic_style_error_symbol = 'e'
 let g:syntastic_style_warning_symbol = 'w'
-
-" lightline: {{{3
-if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
-    let g:lightline = {
-          \ 'colorscheme': 'default',
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-          \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-          \ },
-          \ 'component_function': {
-          \   'modified': 'LightLineModified',
-          \   'readonly': 'LightLineReadonly',
-          \   'fugitive': 'LigthLineFugitive',
-          \   'filename': 'LightLineFilename',
-          \   'fileformat': 'LightLineFileformat',
-          \   'filetype': 'LightLineFiletype',
-          \   'fileencoding': 'LightLineFileenconding',
-          \   'mode': 'LightLineMode',
-          \ },
-          \ 'component_expand': {
-          \   'syntastic': 'SyntasticStatuslineFlag',
-          \ },
-          \ 'component_type': {
-          \   'syntastic': 'error',
-          \ },
-          \ 'subseparator': { 'left': '|', 'right': '|' }
-          \ }
-
-    function! LightLineModified()
-      return &ft =~ 'help\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-    endfunction
-
-    function! LightLineReadonly()
-        return &ft !~? 'help\|gundo' && &readonly ? 'RO' : ''
-    endfunction
-
-    function! LightLineFilename()
-        let fname = expand('%:t')
-        return fname == '__Tagbar__' ? g:lightline.fname :
-                    \ fname =~ '__Gundo' ? '' :
-                    \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-                    \ ('' != fname ? fname : '[No Name]') .
-                    \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-    endfunction
-
-    function! LigthLineFugitive()
-        try
-            if expand('%:t') !~? 'Tagbar\|Gundo' && exists('*fugitive#head')
-                let branch = fugitive#head()
-                return branch !=# '' ? ' '.branch : ''
-            endif
-        catch
-        endtry
-        return ''
-    endfunction
-
-    function! LightLineFileformat()
-      return winwidth(0) > 70 ? &fileformat : ''
-    endfunction
-
-    function! LightLineFiletype()
-      return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-    endfunction
-
-    function! LightLineFileenconding()
-      return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-    endfunction
-
-    function! LightLineMode()
-        let fname = expand('%:t')
-        return fname == '__Tagbar__' ? 'Tagbar' :
-                \ fname == '__Gundo__' ? 'Gundo' :
-                \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-                \ winwidth(0) > 60 ? lightline#mode() : ''
-    endfunction
-
-    let g:tagbar_status_func = 'TagbarStatusFunc'
-
-    function! TagbarStatusFunc(current, sort, fname, ...) abort
-        let g:lightline.fname = a:fname
-        return lightline#statusline(0)
-    endfunction
-
-    augroup AutoSyntastic
-      autocmd!
-      autocmd BufWritePost *.c,*.cpp,*.py,*.pl,*.sh,*.vim,*.spec,*.xml,*.py.in call s:syntastic()
-    augroup END
-    function! s:syntastic()
-      SyntasticCheck
-      call lightline#update()
-    endfunction
-endif
-if &t_Co > 16
-    let g:lightline.colorscheme = 'solarized'
-endif
 
 " Vimwiki: {{{3
 if isdirectory($HOME."/.vim/bundle/vimwiki")
@@ -539,6 +437,115 @@ endif
 " Ultisnips:{{{3
 let g:UltiSnipsExpandTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+
+" [DISABLE]solarized: {{{3
+"if isdirectory($HOME."/.vim/bundle/solarized")
+"    let g:solarized_contrast="high"    "default value is normal
+"    let g:solarized_visibility="high"  "default value is normal
+"    let g:solarized_diffmode="high"    "default value is normal
+"    hi! link SpecialKey NonText
+"    call togglebg#map("<F5>")
+"    if &t_Co > 16
+"        let g:solarized_termcolors=256
+"        let g:lightline.colorscheme = 'solarized'
+"    endif
+"    if has("gui_running")
+"         let g:lightline.colorscheme = 'solarized'
+"   endif
+"endif
+
+" [DISABLE]lightline: {{{3
+"if isdirectory($HOME."/.vim/bundle/lightline.vim") || isdirectory($HOME."/.vim/bundle/lightline")
+"    let g:lightline = {
+"          \ 'colorscheme': 'default',
+"          \ 'active': {
+"          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+"          \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+"          \ },
+"          \ 'component_function': {
+"          \   'modified': 'LightLineModified',
+"          \   'readonly': 'LightLineReadonly',
+"          \   'fugitive': 'LigthLineFugitive',
+"          \   'filename': 'LightLineFilename',
+"          \   'fileformat': 'LightLineFileformat',
+"          \   'filetype': 'LightLineFiletype',
+"          \   'fileencoding': 'LightLineFileenconding',
+"          \   'mode': 'LightLineMode',
+"          \ },
+"          \ 'component_expand': {
+"          \   'syntastic': 'SyntasticStatuslineFlag',
+"          \ },
+"          \ 'component_type': {
+"          \   'syntastic': 'error',
+"          \ },
+"          \ 'subseparator': { 'left': '|', 'right': '|' }
+"          \ }
+"
+"    function! LightLineModified()
+"      return &ft =~ 'help\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+"    endfunction
+"
+"    function! LightLineReadonly()
+"        return &ft !~? 'help\|gundo' && &readonly ? 'RO' : ''
+"    endfunction
+"
+"    function! LightLineFilename()
+"        let fname = expand('%:t')
+"        return fname == '__Tagbar__' ? g:lightline.fname :
+"                    \ fname =~ '__Gundo' ? '' :
+"                    \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+"                    \ ('' != fname ? fname : '[No Name]') .
+"                    \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+"    endfunction
+"
+"    function! LigthLineFugitive()
+"        try
+"            if expand('%:t') !~? 'Tagbar\|Gundo' && exists('*fugitive#head')
+"                let branch = fugitive#head()
+"                return branch !=# '' ? ' '.branch : ''
+"            endif
+"        catch
+"        endtry
+"        return ''
+"    endfunction
+"
+"    function! LightLineFileformat()
+"      return winwidth(0) > 70 ? &fileformat : ''
+"    endfunction
+"
+"    function! LightLineFiletype()
+"      return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+"    endfunction
+"
+"    function! LightLineFileenconding()
+"      return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+"    endfunction
+"
+"    function! LightLineMode()
+"        let fname = expand('%:t')
+"        return fname == '__Tagbar__' ? 'Tagbar' :
+"                \ fname == '__Gundo__' ? 'Gundo' :
+"                \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+"                \ winwidth(0) > 60 ? lightline#mode() : ''
+"    endfunction
+"
+"    let g:tagbar_status_func = 'TagbarStatusFunc'
+"
+"    function! TagbarStatusFunc(current, sort, fname, ...) abort
+"        let g:lightline.fname = a:fname
+"        return lightline#statusline(0)
+"    endfunction
+"
+"    let g:syntastic_mode_map = { 'mode': 'passive', }
+"    augroup AutoSyntastic
+"      autocmd!
+"      autocmd BufWritePost *.c,*.cpp,*.py,*.pl,*.sh,*.vim,*.spec,*.xml,*.py.in call s:syntastic()
+"    augroup END
+"    function! s:syntastic()
+"      SyntasticCheck
+"      call lightline#update()
+"    endfunction
+"endif
 
 " [DISABLE]Fuzzyfinder:{{{3
 "if isdirectory($HOME."/.vim/bundle/vim-fuzzyfinder")
@@ -574,7 +581,7 @@ let g:UltiSnipsEditSplit="vertical"
 " [DISABLE]Powerline: {{{3
 "if isdirectory($HOME."/.vim/bundle/vim-powerline")
 "    let g:Powerline_symbols = 'unicode'
-"    "let g:Powerline_theme = 'solarized256'
+"    let g:Powerline_theme = 'solarized256'
 "endif
 "try
 "    call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
@@ -767,15 +774,6 @@ if has("autocmd") && exists("+omnifunc")
     autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
-
-" To be used when :gui is issued
-"autocmd GuiEnter * colorscheme solarized
-
-"augroup ShowNumber
-"    autocmd!
-"    autocmd WinEnter * setlocal number
-"    autocmd WinLeave * setlocal nonumber
-"augroup END
 
 " Secure GPG key handling
 augroup Gpg
@@ -1325,21 +1323,17 @@ if has("gui_running")
     set guioptions-=L
     set guioptions-=T
     set mouse=
+
     "set guifont=ProggyCleanTTSZ\ 12
     "set guifont=Terminus\ 8
-    set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
-    "set guifont=Inconsolata\ 10
+    "set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
+    set guifont=Inconsolata\ 10
     "set guifont=Inconsolata-dz-Powerline \10
-    "set background=dark
-    set background=light
-    "colorscheme gyrcolor
-    let g:solarized_contrast="high"    "default value is normal
-    let g:solarized_visibility="high"    "default value is normal
-    let g:solarized_diffmode="high"    "default value is normal
-    colorscheme solarized
-    hi! link SpecialKey NonText
-    let g:lightline.colorscheme = 'solarized'
-    call togglebg#map("<F5>")
+    "
+    set background=dark
+    colorscheme gyrcolor
+    "set background=light
+    "colorscheme solarized
 endif
 if has("win32")
     set guifont=ProggyCleanSZ:h8:cDEFAULT
