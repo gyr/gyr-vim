@@ -113,10 +113,9 @@ set numberwidth=1   " Use 1 col + 1 space for numbers
 " Syntax, highlighting and spelling:{{{2
 if &t_Co > 2 || has("gui_running")
     syntax on
-    set hlsearch        " Highligh search
-    "set background=dark " Use colors which look better on the background
+    set hlsearch         " Highligh search
     set background=light " Use colors which look better on the background
-    set synmaxcol=2000  " Syntax coloring lines that are too long just slows down the world
+    set synmaxcol=2000   " Syntax coloring lines that are too long just slows down the world
 endif
 set nocursorcolumn
 set cursorline
@@ -375,9 +374,7 @@ if $TERM =~ '256color'
 endif
 
 if &t_Co > 16
-    set background=dark
     colorscheme gyrcolor
-    "set background=light
     "colorscheme solarized
 endif
 
@@ -1330,9 +1327,7 @@ if has("gui_running")
     set guifont=Inconsolata\ 10
     "set guifont=Inconsolata-dz-Powerline \10
     "
-    set background=dark
     colorscheme gyrcolor
-    "set background=light
     "colorscheme solarized
 endif
 if has("win32")
