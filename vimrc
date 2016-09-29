@@ -118,7 +118,7 @@ if &t_Co > 2 || has("gui_running")
     set background=light " Use colors which look better on the background
     set synmaxcol=2000  " Syntax coloring lines that are too long just slows down the world
 endif
-set cursorcolumn
+set nocursorcolumn
 set cursorline
 if exists('+colorcolumn')
     set colorcolumn=+1
@@ -713,7 +713,7 @@ augroup Gyr
 
     " Cursorline
     autocmd WinLeave * setlocal nocursorline nocursorcolumn
-    autocmd WinEnter * setlocal cursorline cursorcolumn
+    autocmd WinEnter * setlocal cursorline
 
     "Change to directory of the current file
     "autocmd BufEnter * if &ft != 'help' | lcd %:p:h | endif
