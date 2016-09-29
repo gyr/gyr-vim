@@ -27,3 +27,10 @@ Adding a plugin bundle:
     git commit -m "Install Fugitive.vim bundle as a submodule."
 
 Reference: http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+
+Removing a plugin bundle:
+
+    cd ~/.vim
+    git submodule deinit -f bundle/fugitive
+    git rm bundle/fugitive
+    git clean -dfx
