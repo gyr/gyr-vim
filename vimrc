@@ -431,9 +431,9 @@ if isdirectory($HOME."/.vim/bundle/vimwiki")
     let g:vimwiki_html_header_numbering = 1
 endif
 
-" Ultisnips:{{{3
-let g:UltiSnipsExpandTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
+" [DISABLE]Ultisnips:{{{3
+"let g:UltiSnipsExpandTrigger="<s-tab>"
+"let g:UltiSnipsEditSplit="vertical"
 
 " [DISABLE]solarized: {{{3
 "if isdirectory($HOME."/.vim/bundle/solarized")
