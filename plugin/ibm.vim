@@ -20,7 +20,8 @@ set cpo&vim
 "===============================================================================
 " Settings:{{{1
 set path+=$HOME/.ibm.d/**
-set path+=$HOME/work/powerkvm/kop/**
+set path+=$HOME/work/pkvm/kop/**
+set path+=$HOME/work/hostos/**
 
 " Plugin:{{{2
 
@@ -57,8 +58,7 @@ augroup END
 
 cab ei,, edit $HOME/.ibm.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 cab ek,, edit $HOME/work/pkvm/kop/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab et,, edit $HOME/work/pkvm/ibm-kvm-tools/**/*<C-R>=gyrlib#EatChar('\s')<CR>
-cab er,, edit $HOME/work/pkvm/ibm-kvm-rpm/**/*<C-R>=gyrlib#EatChar('\s')<CR>
+cab eb,, edit $HOME/work/hostos/builds/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 cab ew,, edit $HOME/work/repos/wok/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 " }}}1
