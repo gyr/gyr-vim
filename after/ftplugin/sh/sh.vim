@@ -68,6 +68,7 @@ iab <buffer> trap,, # trap handler<CR>
             \fi<CR>
             \}<CR>
             \<C-R>=gyrlib#EatChar('\s')<CR>
+iab <buffer> quiet,, > /dev/null 2>&1<C-R>=gyrlib#EatChar('\s')<CR>
 
 "}}}1
 "===============================================================================
