@@ -21,9 +21,6 @@ let s:base_dir = $HOME."/.vim-tmp"
 let s:list_dir = ["/tags", "/backup", "/swap", "/aux-files", "/undo", "/sessions"]
 for s:dir in s:list_dir
     call gyrlib#EnsureDirExists(s:base_dir.s:dir)
-    "if ! isdirectory(s:base_dir.s:dir)
-    "    call mkdir(s:base_dir.s:dir, "p")
-    "endif
 endfor
 
 let g:netrw_home = s:base_dir
@@ -32,10 +29,6 @@ let g:netrw_winsize=10
 filetype plugin indent off
 syntax off
 try
-    "call pathogen#runtime_append_all_bundles()
-    ""call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundle'))
-    "call pathogen#helptags()
-    "call pathogen#infect()
     runtime bundle/pathogen/autoload/pathogen.vim
     execute pathogen#infect()
     execute pathogen#helptags()
@@ -43,10 +36,9 @@ try
 catch /.*/
     echoerr "E: Failed pathogen functions"
 endtry
-"filetype on         " Enable filetype detection
-"filetype plugin on  " Enable filetype-specific plugins
-"filetype indent on  " Enable filetype-specific indenting
-syntax on
+" Enable filetype detection
+" Enable filetype-specific plugins
+" Enable filetype-specific indenting
 filetype plugin indent on
 
 "}}}1
@@ -66,11 +58,9 @@ set pastetoggle=<Insert>
 "-------------------------------------------------------------------------------
 " Moving around, searching and patterns:{{{2
 set whichwrap+=<,>,[,]
-set path+=.
+set path=.
 set path+=$HOME
-set path+=$HOME/.gyr.d
 set path+=$HOME/.gyr.d/**
-set path+=$HOME/.vim
 set path+=$HOME/.vim/**
 set incsearch       " Search while typing
 set magic           " Use magic patterns  (extended regular expressions) in search patterns
@@ -81,7 +71,6 @@ set smartcase       " Consider noic when search has upper case
 "-------------------------------------------------------------------------------
 " Tags:{{{2
 set tags+=$HOME/.vim-tmp/tags/kop.tags
-"set tags+=$HOME/.vim-tmp/tags/
 set showfulltag     " Show more information while completing tags
 
 "}}}2
@@ -104,7 +93,6 @@ set sidescrolloff=10
 set display+=lastline
 set cmdheight=2     " 2 line for command
 "set lazyredraw      " don't redraw when don't have to
-"set list            " Show special characters
 set nonumber          " Display line numbers
 set numberwidth=1   " Use 1 col + 1 space for numbers
 
@@ -116,6 +104,7 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch         " Highligh search
     set background=light " Use colors which look better on the background
     set synmaxcol=2000   " Syntax coloring lines that are too long just slows down the world
+    let c_comment_strings=1 "highlighting strings inside C comments.
 endif
 set nocursorcolumn
 set cursorline
@@ -171,7 +160,6 @@ else
     let g:GNU_Screen_used = 0
 endif
 set ttyfast         " Send more characters to terminal, improving windows redraw
-"set noesckeys
 set title           " Display the file name on status bar
 set titlestring=%t%(\ [%R%M]%)
 
@@ -218,9 +206,8 @@ if exists('+undoreload')
     set undoreload=10000
 endif
 set backspace=indent,eol,start " <BACKSpace> works on indentantion, line break and the start of insert
-"set formatoptions+=tan "list of flags that tell how automatic formatting works
 set formatoptions+=tn "list of flags that tell how automatic formatting works
-set complete=.,w,b,u,U,t,i,d " do lots of scanning on tab completion
+set complete=.,w,b,u,U,t " do not scan include files
 set dictionary=/usr/share/dict/words " more words!
 set infercase       " in insert mode and ignorecase on the case of the match is adjusted depending on the typed text
 set showmatch       " Show matchs
@@ -246,7 +233,6 @@ set cinoptions+=l1,t0,i0,(0
 "}}}2
 "-------------------------------------------------------------------------------
 " Folding:{{{2
-"set foldcolumn=3      " 2 lines of column for fold showing, always
 set foldopen+=hor,insert,jump,mark,percent,quickfix,search,tag,undo " add this stuff to open folder as well
 set foldmethod=syntax " fold on syntax automatically, always
 " http://dhruvasagar.com/2013/03/28/vim-better-foldtext
@@ -320,9 +306,7 @@ set grepformat=%f:%l:%c:%m
 " Various:{{{2
 set virtualedit+=block
 set secure
-"set gdefault        " all matches in a line are substituted instead of one
 set sessionoptions+=unix,slash
-"set viminfo+='10,:20,%
 set viminfo+='10,:20
 "set debug=msg       " Setting this makes it show that error messages don't disappear after one second on startup.
 
@@ -712,11 +696,6 @@ augroup Gyr
     autocmd WinLeave * setlocal nocursorline nocursorcolumn
     autocmd WinEnter * setlocal cursorline
 
-    "Change to directory of the current file
-    "autocmd BufEnter * if &ft != 'help' | lcd %:p:h | endif
-
-    "autocmd BufEnter * let &scrolloff=999-&scrolloff
-
     "Return to last edit position
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -815,7 +794,6 @@ augroup END
 
 "-------------------------------------------------------------------------------
 " Miscelaneous:{{{2
-"nnoremap <silent><unique><leader>v :e ~/.vimrc<CR>
 nnoremap <silent><unique><leader>v :e ~/.vim/vimrc<CR>
 
 " nnoremap <silent><unique><Leader><Insert> :setlocal paste!<Bar>echo 'Paste mode changed'<CR>
