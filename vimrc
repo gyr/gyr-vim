@@ -31,7 +31,7 @@ syntax off
 try
     runtime bundle/pathogen/autoload/pathogen.vim
     execute pathogen#infect()
-    execute pathogen#helptags()
+    "execute pathogen#helptags()
     " After add a plugin in bundle run :Helptags
 catch /.*/
     echoerr "E: Failed pathogen functions"
@@ -367,6 +367,8 @@ endif
 " Plugin:{{{2
 " Disable Motorola Settings
 let g:MotorolaLoadSettings = 1
+" Disable IBM Settings
+let g:IBMLoadSettings = 1
 
 " GitGutter:{{{3
 try
