@@ -358,8 +358,8 @@ if $TERM =~ '256color'
 endif
 
 if &t_Co > 16
-    colorscheme gyrcolor
-    "colorscheme solarized
+    "colorscheme gyrcolor
+    colorscheme solarized
 endif
 
 "}}}2
