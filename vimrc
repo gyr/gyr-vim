@@ -102,7 +102,7 @@ set numberwidth=1   " Use 1 col + 1 space for numbers
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch         " Highligh search
-    set background=light " Use colors which look better on the background
+    set background=dark " Use colors which look better on the background
     set synmaxcol=2000   " Syntax coloring lines that are too long just slows down the world
     let c_comment_strings=1 "highlighting strings inside C comments.
 endif
@@ -358,8 +358,7 @@ if $TERM =~ '256color'
 endif
 
 if &t_Co > 16
-    "colorscheme gyrcolor
-    colorscheme solarized
+    colorscheme gyrcolor
 endif
 
 "}}}2
@@ -1308,7 +1307,6 @@ if has("gui_running")
     "set guifont=Inconsolata-dz-Powerline \10
     "
     colorscheme gyrcolor
-    "colorscheme solarized
 endif
 if has("win32")
     set guifont=ProggyCleanSZ:h8:cDEFAULT

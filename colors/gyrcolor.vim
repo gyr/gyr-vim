@@ -21,7 +21,7 @@ set t_ZH=[3m
 set t_ZR=[23m
 
 let colors_name = "gyrcolor"
-let g:gyr_colorscheme = 'red'
+let g:gyr_colorscheme = 'green'
 
 if has("gui_running")
     let s:colordict = {
@@ -105,7 +105,7 @@ elseif g:gyr_colorscheme == 'green'
                 \'statusline'  : s:colordict['green'],
                 \'statuslinenc': s:colordict['darkgreen'],
                 \'vertsplit'   : s:colordict['darkgreen'],
-                \'constant'    : s:colordict['cyan'],
+                \'constant'    : s:colordict['darkcyan'],
                 \'identifier'  : s:colordict['green'],
                 \'statement'   : s:colordict['darkgreen'],
                 \'type'        : s:colordict['darkcyan'],
@@ -119,13 +119,13 @@ if &background == "dark"
 else
     let s:foregroundcolor = s:colordict['black']
     let s:backgroundcolor = s:colordict['white']
-    let s:commentcolor = s:colordict['gray']
+    let s:commentcolor = s:colordict['darkgray']
 endif
 
 if ! has("gui_running")
     exec "hi SignColumn   cterm=none              ctermfg=".s:colordict['white']."   ctermbg=".s:colordict['black']
     exec "hi SpecialKey   cterm=underline         ctermfg=".s:colordict['darkred']
-    exec "hi NonText      cterm=underline         ctermfg=".s:colordict['darkred']
+    exec "hi NonText      cterm=underline         ctermfg=".s:colordict['darkgreen']
     exec "hi Search       cterm=none              ctermfg=".s:colordict['black']."   ctermbg=".s:colordict['yellow']
     exec "hi LineNr       cterm=underline,reverse ctermfg=".s:local_colorscheme['linenr']
     exec "hi StatusLine   cterm=reverse           ctermfg=".s:local_colorscheme['statusline']."   ctermbg=".s:colordict['black']
