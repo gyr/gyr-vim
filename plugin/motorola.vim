@@ -122,7 +122,7 @@ if has("unix")
     """"""""""""""""""""""""""""""""""""""""""""""""""""""
     function! CreateCtags(tagType)
         if (a:tagType == "im")
-            execute ":!~/.gyr.d/scripts/motorola/createCtags -a"
+            execute ":!~/.gyr.d/bin/motorola/createCtags -a"
 "            execute ":![ -e /vobs/core_imps/code/im/imps_tags ] && rm -f /vobs/core_imps/code/im/imps_tags"
 "            execute ":![[ -d /vobs/core_imps/code/im/ && -e /work/ctags/bin/ctags ]] && /work/ctags/bin/ctags -f /vobs/core_imps/code/im/imps_tags -R --c++-kinds=+p --fields=+iaS --extra=+q -h \".h\",\".hh\" /vobs/core_imps/code/im/wvim/* /vobs/core_imps/code/im/imps/* /vobs/core_imps/code/im/dl_hdr/* /vobs/core_imps/code/im/dl_util/* /vobs/core_imps/code/im/ghdr/* /vobs/core_imps/code/im/dl_wvim/* /vobs/core_imps/code/im/util/* /vobs/core_imps/code/im/im/lj/afw/* /vobs/core_imps/code/im/im/lj/pladapt/* /vobs/core_imps/code/im/im/lj/uistyle/* /vobs/core_imps/code/im/im/lj/lib/* /vobs/core_imps/code/im/im/lj/public/* /vobs/core_imps/code/im/* || echo 'View not set.'"
 "            execute ":![ -e /vobs/core_imps/code/im/imps_tags ] && echo 'IM tags generated.' || echo 'IM tag NOT generated.'"

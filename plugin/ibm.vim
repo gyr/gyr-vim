@@ -19,7 +19,7 @@ set cpo&vim
 
 "===============================================================================
 " Settings:{{{1
-set path+=$HOME/.ibm.d/**
+set path+=$HOME/.gyr.d/ibm.d/**
 set path+=$HOME/work/pkvm/kop/**
 set path+=$HOME/work/hostos/**
 
@@ -28,8 +28,8 @@ set path+=$HOME/work/hostos/**
 " Vimwiki: {{{3
 if isdirectory($HOME."/.vim/bundle/vimwiki")
     let ibm_wiki = {}
-    let ibm_wiki.path = '~/.ibm.d/vimwiki/'
-    let ibm_wiki.path_html = '~/.ibm.d/public_html/'
+    let ibm_wiki.path = '~/.gyr.d/ibm.d/vimwiki/'
+    let ibm_wiki.path_html = '~/.gyr.d/ibm.d/public_html/'
     let ibm_wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh', 'perl': 'perl', 'conf': 'conf', 'fstab': 'fstab', 'deb': 'debsources', 'resolv': 'resolv', 'xml': 'xml'}
     let ibm_list = [ibm_wiki]
     let g:vimwiki_list = g:vimwiki_list + ibm_list
