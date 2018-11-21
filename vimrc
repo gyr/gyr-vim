@@ -296,9 +296,7 @@ if exists('+undodir') | set undodir=~/.vim-tmp/undo,~/.tmp,~/tmp,/var/tmp,/tmp |
 "}}}2
 "-------------------------------------------------------------------------------
 " Running make and jumping to errors:{{{2
-"set grepprg=ack\ -H\ --nocolor\ --nogroup\ --column
-"set grepprg=ag\ --nocolor\ --nogroup\ --column
-set grepprg=ag\ --vimgrep\ $*
+set grepprg=rg\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
 
 "}}}2
