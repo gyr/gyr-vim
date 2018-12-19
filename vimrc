@@ -31,7 +31,7 @@ syntax off
 try
     runtime bundle/pathogen/autoload/pathogen.vim
     execute pathogen#infect()
-    "execute pathogen#helptags()
+    execute pathogen#helptags()
     " After add a plugin in bundle run :Helptags
 catch /.*/
     echoerr "E: Failed pathogen functions"
@@ -835,7 +835,6 @@ nnoremap <unique><Leader>? ggVGg?
 "nnoremap <silent><unique><Leader>w :set wrap!<CR>:set wrap?<CR>
 "nnoremap <silent><unique><Leader><Bar> :set wrap linebreak nolist formatoptions-=t nonumber<CR>
 "nnoremap <silent><unique><Leader><Bslash> :set nowrap nolinebreak list formatoptions+=t number<CR>
-nnoremap <silent><unique><Leader><Del> :call gyrlib#ToggleTextMode()<CR>
 
 " set line number mode
 "nnoremap <silent><unique><Leader>n :call gyrlib#ToggleNumberMode()<CR>
@@ -1155,9 +1154,8 @@ endtry
 
 " Syntastic:{{{3
 try
-    nnoremap <silent><unique><Leader><CR> :SyntasticCheck<CR>
-    "nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>
-    nnoremap <silent><unique><Leader><BS> :SyntasticReset<CR>``zz
+    nnoremap <silent><unique><Leader>sc :SyntasticCheck<CR>
+    nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>``zz
 catch /.*/
     echoerr "Failed to load Syntastic functions"
 endtry

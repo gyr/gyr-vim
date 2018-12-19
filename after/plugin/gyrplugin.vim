@@ -63,7 +63,6 @@ if g:gyrplugin_map_keys
 
     "}}}2
     " GYRLIB MAPS:{{{2
-    nnoremap <silent><unique><Del> :set lz<Bar>call gyrlib#DelTrailingSpaces()<Bar>set nolz<CR>
     execute "noremap <silent><unique>" g:gyrplugin_map_prefix."q" ":set lz<Bar>call gyrlib#BufcloseCloseIt()<Bar>set nolz<CR>"
     "noremap <silent><unique><Leader>c :set lz<Bar>call gyrlib#CommentOnOff()<Bar>set nolz<CR>
     execute "noremap <silent><unique>" g:gyrplugin_map_prefix."ss" ":set lz<Bar>call gyrlib#SaveCurrentSession()<Bar>set nolz<CR>"
@@ -94,6 +93,10 @@ if g:gyrplugin_map_keys
     " unset search highlight
     "nnoremap <silent><Leader>/ :let @/=""<CR>  :echo 'Highlights Cleared'<CR>
     nnoremap <BS> <Esc>:nohlsearch<Bar>echo 'Highlights Cleared'<CR>
+
+    nnoremap <silent><unique><Leader><BS> :set lz<Bar>call gyrlib#DelTrailingSpaces()<Bar>set nolz<CR>
+
+    nnoremap <silent><unique><Leader><Del> :call gyrlib#ToggleTextMode()<CR>
 
 endif
 
