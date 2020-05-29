@@ -62,6 +62,8 @@ set path=.
 set path+=$HOME
 set path+=$HOME/.gyr.d/**
 set path+=$HOME/.vim/**
+set path+=**        " Search down into subfolders
+                    " Provides tab-completion for all file-related tasks
 set incsearch       " Search while typing
 set magic           " Use magic patterns  (extended regular expressions) in search patterns
 set ignorecase      " Ignore case on search
@@ -100,7 +102,7 @@ set numberwidth=1   " Use 1 col + 1 space for numbers
 "-------------------------------------------------------------------------------
 " Syntax, highlighting and spelling:{{{2
 if &t_Co > 2 || has("gui_running")
-    syntax on
+    syntax enable
     set hlsearch         " Highligh search
     set background=dark " Use colors which look better on the background
     set synmaxcol=2000   " Syntax coloring lines that are too long just slows down the world
@@ -333,9 +335,13 @@ let g:netrw_liststyle = 3
 "-------------------------------------------------------------------------------
 " Color:{{{2
 
+set term=$TERM
+
 if $TERM =~ '^xterm'
     set t_Co=256
 elseif $TERM =~ '^screen'
+    set t_Co=256            " just guessing
+elseif $TERM =~ '^tmux'
     set t_Co=256            " just guessing
 elseif $TERM =~ '^rxvt'
     "set t_Co=88
@@ -1302,6 +1308,7 @@ if has("gui_running")
     set guifont=Inconsolata\ 10
     "set guifont=Inconsolata-dz-Powerline \10
     "
+    "colorscheme gyr_paleturquoise256
     colorscheme gyrcolor
 endif
 if has("win32")
