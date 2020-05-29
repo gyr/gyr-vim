@@ -25,22 +25,22 @@ let g:gyr_colorscheme = 'green'
 
 if has("gui_running")
     let s:colordict = {
-                \'black'      : '#000000',
-                \'darkred'    : '#CD0000',
-                \'darkgreen'  : '#00CD00',
-                \'darkyellow' : '#CDCD00',
-                \'darkblue'   : '#0000FF',
-                \'darkmagenta': '#CD00CD',
-                \'darkcyan'   : '#00CDCD',
-                \'gray'       : '#BEBEBE',
-                \'darkgray'   : '#A9A9A9',
-                \'red'        : '#FF0000',
-                \'green'      : '#00FF00',
-                \'yellow'     : '#FFFF00',
-                \'blue'       : '#6485ED',
-                \'magenta'    : '#FF00FF',
-                \'cyan'       : '#00FFFF',
-                \'white'      : '#FFFFFF',
+                \'black'      : '#231f20',
+                \'darkred'    : '#ff0000',
+                \'darkgreen'  : '#63c94a',
+                \'darkyellow' : '#f78d1f',
+                \'darkblue'   : '#3158af',
+                \'darkmagenta': '#d6058d',
+                \'darkcyan'   : '#26b7b0',
+                \'gray'       : '#dedede',
+                \'darkgray'   : '#a7a6a6',
+                \'red'        : '#ee551c',
+                \'green'      : '#b3e763',
+                \'yellow'     : '#fbe17e',
+                \'blue'       : '#35bee8',
+                \'magenta'    : '#f899d1',
+                \'cyan'       : '#66cdda',
+                \'white'      : '#ffffff',
                 \}
 else
     let s:colordict = {
@@ -158,22 +158,24 @@ if ! has("gui_running")
     exec "hi Normal       cterm=none              ctermfg=".s:foregroundcolor."      ctermbg=".s:backgroundcolor
     exec "hi Cursor       cterm=none              ctermfg=".s:colordict['black']."   ctermbg=".s:colordict['green']
 else
-    exec "hi SpecialKey   gui=underline,        guifg=".s:colordict['darkred']
-    exec "hi NonText      gui=underline         guifg=".s:colordict['darkred']
+    exec "hi SignColumn   gui=none              guifg=".s:colordict['white']."   guibg=".s:colordict['black']
+    exec "hi SpecialKey   gui=underline         guifg=".s:colordict['darkred']
+    exec "hi NonText      gui=underline         guifg=".s:colordict['darkgreen']
     exec "hi Search       gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['yellow']
     exec "hi LineNr       gui=underline,reverse guifg=".s:local_colorscheme['linenr']
     exec "hi StatusLine   gui=reverse           guifg=".s:local_colorscheme['statusline']."   guibg=".s:colordict['black']
-    exec "hi StatusLineNC gui=reverse           guifg=".s:local_colorscheme['statuslinenc']." guibg=".s:colordict['black']
+    exec "hi User1        gui=reverse           guifg=".s:local_colorscheme['statuslinenc']." guibg=".s:colordict['white']
+    exec "hi StatusLineNC gui=reverse           guifg=".s:local_colorscheme['statuslinenc']." guibg=".s:colordict['white']
     exec "hi VertSplit    gui=reverse           guifg=".s:local_colorscheme['vertsplit']."    guibg=".s:colordict['black']
     exec "hi Visual       gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['gray']
-    exec "hi WarningMsg   gui=none              guifg=".s:colordict['yellow']."  guibg=.s:colordict['darkgray']
+    exec "hi WarningMsg   gui=none              guifg=".s:colordict['yellow']."  guibg=".s:colordict['darkgray']
     exec "hi Folded       gui=none              guifg=".s:colordict['black']
     exec "hi FoldColumn   gui=none              guifg=".s:colordict['black']
     exec "hi DiffAdd      gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['green']
     exec "hi DiffChange   gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['yellow']
     exec "hi DiffDelete   gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['red']
     exec "hi DiffText     gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['magenta']
-    exec "hi SpellBad     gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['darkred']
+    exec "hi SpellBad     gui=none              guifg=".s:colordict['darkyellow']."   guibg=".s:colordict['darkred']
     exec "hi Pmenu        gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['gray']
     exec "hi PmenuSel     gui=none              guifg=".s:colordict['white']."   guibg=".s:colordict['darkred']
     exec "hi TabLine      gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['darkgray']
@@ -188,8 +190,7 @@ else
     exec "hi PreProc      gui=none              guifg=".s:colordict['darkmagenta']
     exec "hi Type         gui=none              guifg=".s:local_colorscheme['type']
     exec "hi Error        gui=none              guifg=".s:colordict['white']."   guibg=".s:colordict['darkred']
-    exec "hi Normal       gui=none              guifg=".s:colordict['white']."   guibg=".s:colordict['black']
-    exec "hi Normal       cterm=none            guifg=".s:foregroundcolor."      guibg=".s:backgroundcolor
+    exec "hi Normal       gui=none              guifg=".s:foregroundcolor."      guibg=".s:backgroundcolor
     exec "hi Cursor       gui=none              guifg=".s:colordict['black']."   guibg=".s:colordict['green']
 endif
 
