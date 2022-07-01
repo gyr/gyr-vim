@@ -83,8 +83,8 @@ set wrap            " Desliga quebra de linhas. As linhas vao ficar longas, ultr
 set linebreak nolist   " When wrap is on break lines at 'breakat', do not add <EOL>. list must be off. The linebreak setting will not work when the list setting is enabled.
 if has("multi_byte")
     set showbreak=↪\      " String to put at the start of lines that have been wrapped (wrap must be on). number must be off.
-    set fillchars+=diff:⣿,vert:│
-    set listchars+=tab:▸▸,trail:␣,eol:¬,extends:»,precedes:«,nbsp:ø,space:·
+    set fillchars+=diff:↔,vert:│
+    set listchars+=tab:▸▸,trail:▪,eol:¬,extends:»,precedes:«,nbsp:ø,space:·
 else
     set showbreak=>     " String to put at the start of lines that have been wrapped (wrap must be on). number must be off.
     set fillchars+=diff:-,vert:|
@@ -667,8 +667,6 @@ noremap <Leader>px :set paste<CR>:put  *<CR>:set nopaste<CR>
 noremap <Leader>p :set paste<CR>:put  +<CR>:set nopaste<CR>
 noremap <Leader>Px :set paste<CR>:put! *<CR>:set nopaste<CR>
 noremap <Leader>P :set paste<CR>:put! +<CR>:set nopaste<CR>
-"map <Leader>p "+p
-"map <Leader>P "+P
 " Paste and reformat/reindent
 "nnoremap <unique><Leader>P P'[v']=
 "nnoremap <unique><Leader>p p'[v']=
@@ -706,13 +704,7 @@ nnoremap <silent><unique><Leader>zs :new<Bar>set buftype=nofile<Bar>echo "Scratc
 "-------------------------------------------------------------------------------
 "File:{{{2
 nnoremap <unique><Leader>e :Lex<CR>
-"nnoremap <unique><Leader>eg :edit $HOME/.gyr.d/**/*
-"nnoremap <unique><Leader>ev :edit $HOME/.vim/**/*
-"nnoremap <unique><Leader>eko :edit $HOME/work/powerkvm/kop/**/*
-"nnoremap <unique><Leader>eki :edit $HOME/work/powerkvm/kimchi/**/*
-"nnoremap <unique><Leader>e/ :edit **/*
 "nnoremap <unique><Leader>e. :edit %:p:h/**/*
-"nnoremap <unique><Leader>eh :edit ~/*
 "}}}2
 "-------------------------------------------------------------------------------
 " Tab:{{{2

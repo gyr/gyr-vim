@@ -17,14 +17,14 @@ set cpo&vim
 
 "===============================================================================
 " [DISABLE] Fix up moves:{{{1
-"map  OA <Up>
-"map! OA <Up>
-"map  OB <Down>
-"map! OB <Down>
-"map  OC <Right>
-"map! OC <Right>
-"map  OD <Left>
-"map! OD <Left>
+map  OA <Up>
+map! OA <Up>
+map  OB <Down>
+map! OB <Down>
+map  OC <Right>
+map! OC <Right>
+map  OD <Left>
+map! OD <Left>
 
 " }}}1
 "===============================================================================
