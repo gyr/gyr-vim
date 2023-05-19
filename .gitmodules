@@ -25,3 +25,6 @@
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = http://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/vim-synthwave84"]
+	path = bundle/vim-synthwave84
+	url = https://github.com/artanikin/vim-synthwave84.git
