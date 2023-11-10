@@ -6,10 +6,6 @@
 	path = bundle/vimwiki
 	url = http://github.com/vimwiki/vimwiki.git
     ignore = all
-[submodule "bundle/gitgutter"]
-	path = bundle/gitgutter
-	url = http://github.com/airblade/vim-gitgutter.git
-    ignore = all
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = http://github.com/scrooloose/syntastic.git
@@ -28,3 +24,9 @@
 [submodule "bundle/vim-synthwave84"]
 	path = bundle/vim-synthwave84
 	url = https://github.com/artanikin/vim-synthwave84.git
+[submodule "bundle/vim-256noir"]
+	path = bundle/vim-256noir
+	url = https://github.com/andreasvc/vim-256noir.git
+[submodule "bundle/vim-signify"]
+	path = bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify.git

@@ -285,13 +285,13 @@ set updatetime=9000 " write swap file to disk after 9 inactive seconds
 " Command line editing:{{{2
 set history=1000     " size in line of history
 set wildcharm=<C-z>  " see its use on mapping
-set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.a,*.so,*.exe,*.pyc,*.pyo,*.bak,*~,*.jpg,*.png,*.gif,*.class,*.swp " ignore this extensions
 set wildignore+=*//.git/**/*,*/.hg/**/*,*/.svn/**/*
 if exists("&wildignorecase")
     set wildignorecase
 endif
-set wildmenu        " Autocomplete features in the status bar
+set wildmenu
+set wildoptions=fuzzy,pum
 if exists('+undofile') | set undofile | endif
 if exists('+undodir') | set undodir=~/.vim-tmp/undo,~/.tmp,~/tmp,/var/tmp,/tmp | endif
 
@@ -362,7 +362,13 @@ if $TERM =~ '256color'
 endif
 
 if &t_Co > 16
-    colorscheme gyrcolor
+    "colorscheme gyrcolor
+    "set term=xterm-256color
+    "set term=screen-256color
+    if has('termguicolors')
+        set termguicolors
+    endif
+    colorscheme 256_noir
 endif
 
 "}}}2
