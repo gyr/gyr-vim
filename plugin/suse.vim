@@ -48,6 +48,7 @@ augroup END
 "===============================================================================
 " Abbreviations:{{{1
 
+iab oscvc,, -------------------------------------------------------------------<CR><C-R>=strftime("%c")<cr> - Gustavo Yokoyama Ribeiro <gyribeiro@suse.com><C-R>=gyrlib#EatChar('\s')<CR><CR><CR>
 cab es,, edit $HOME/.gyr.d/suse.d/**/*<C-R>=gyrlib#EatChar('\s')<CR>
 
 " }}}1

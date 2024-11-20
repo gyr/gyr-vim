@@ -651,6 +651,9 @@ inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . 
 
 " format line
 "noremap <unique><Leader>f gqip
+
+" Show changes made to current buffer since the last save
+noremap <unique><Leader>diff :w !delta -s % -<CR>
 "}}}2
 "------------------------------------------------------------------------
 " Insert Mode:{{{2
@@ -1004,12 +1007,6 @@ endif
 " @<register> => execute the content of register, works with +, ., #, :, / like
 "                C-R
 " vi"p  => replace the text inside '"' with the content of default buffer
-"
-" No search o caractere & indica a string pela qual buscamos. Ex:
-" teste
-" :%s/teste/& concluído/
-" teste concluído
-"
 " }}}2
 "-------------------------------------------------------------------------------
 " Insertion mode:{{{2
@@ -1045,6 +1042,13 @@ endif
 "         filter for ones containing the regex /shoe/, and queue them all up to be
 "         edited. :cw will open the list, letting you jump between all those files.
 " :h :w_c
+" :bot term ++rows=5 => create a terminal with 5 rows at the botton
+
+" No search o caractere & indica a string pela qual buscamos. Ex:
+" teste
+" :%s/teste/& concluído/
+" teste concluído
+
 " }}}2
 "-------------------------------------------------------------------------------
 " Explore mode:{{{2
