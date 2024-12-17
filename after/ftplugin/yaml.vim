@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""""""
 "
 " Author: Gustavo Yokoyama Ribeiro
-" File:   xml.vim
-" Update: 20100814 03:20:30
+" File:   yaml.vim
+" Update: 20241204 11:02:40
 " (C) Copyright 2010 Gustavo Yokoyama Ribeiro
 " Licensed under CreativeCommons Attribution-ShareAlike 3.0 Unsupported
 " http://creativecommons.org/licenses/by-sa/3.0/ for more info.
@@ -17,28 +17,34 @@ set cpo&vim
 "===============================================================================
 " Settings:{{{1
 
-setlocal omnifunc& omnifunc=xmlcomplete#CompleteTags
+setlocal omnifunc& omnifunc=yamlcomplete#CompleteTags
 
-" Set the makeprg to use xmllint with the shellredirect option for error capture
-set makeprg=xmllint\ --noout\ --shellredirect\ 1\ %
-" Define the errorformat for xmllint's output
-set errorformat=%f:%l:%c:%m
+" Set the makeprg to use yamllint with the parsable output format
+setlocal makeprg=yamllint\ --format\ parsable\ %
+" Define the errorformat for yamllint's output
+setlocal errorformat=%f:%l:%c:\ %m
 
-let b:syntastic_checkers=['xmllint']
+setlocal foldmethod=indent
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+
+let b:syntastic_checkers=['yamllint']
 
 " }}}1
 "===============================================================================
 " Mapping:{{{1
 " check syntax
-noremap <buffer><Leader>s :!xmllint %<CR>
+noremap <buffer><Leader>s :!yamllint %<CR>
 
 "}}}1
 "===============================================================================
-if !exists('s:load_xml')
-    let s:load_xml = 1
+if !exists('s:load_yaml')
+    let s:load_yaml = 1
 endif
 
-if s:load_xml
+if s:load_yaml
     "===============================================================================
     " Functions:{{{1
 
