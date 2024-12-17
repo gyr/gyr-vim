@@ -29,7 +29,7 @@ set errorformat=%f:%l:\ [%t%n%m
 
 setlocal foldmethod& foldmethod=indent
 " Indentation sets
-setlocal omnifunc& omnifunc=pythoncomplete#Complete
+"setlocal omnifunc& omnifunc=pythoncomplete#Complete
 setlocal smartindent
 setlocal cinwords& cinwords=if,elif,else,for,while,try,except,finally,def,class
 
@@ -62,6 +62,23 @@ if executable('black')
     setlocal formatprg=black\ --quiet\ -
     setlocal formatexpr=
 endif
+
+"-------------------------------------------------------------------------------
+" Plugin:{{{2
+"
+" vim-lsp: {{{3
+" python lsp (requires python311-python-lsp-server{,-all}
+if executable('pylsp')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+"}}}2
+"-------------------------------------------------------------------------------
 
 "}}}1
 "===============================================================================
