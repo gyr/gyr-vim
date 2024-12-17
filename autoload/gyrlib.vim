@@ -436,14 +436,6 @@ function! gyrlib#DosToUnix()
 endfunction
 "}}}3
 
-function! gyrlib#UpdateBundle()
-    let l:pathogen_git = $HOME . "/.vim/bundle/pathogen/.git"
-    if ! filereadable(l:pathogen_git)
-        execute "!cd ~/.vim && git submodule init && git submodule update"
-    endif
-    execute "!cd ~/.vim && git submodule foreach git pull origin master"
-endfunction
-
 "
 "-------------------------------------------------------------------------------
 " }}}2

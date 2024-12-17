@@ -23,19 +23,14 @@ for s:dir in s:list_dir
     call gyrlib#EnsureDirExists(s:base_dir.s:dir)
 endfor
 
+" Pack plugin
+call gyrlib#EnsureDirExists($HOME."/.vim/pack/vendor/start")
+
 let g:netrw_home = s:base_dir
 let g:netrw_winsize=10
 
 filetype plugin indent off
 syntax off
-try
-    runtime bundle/pathogen/autoload/pathogen.vim
-    execute pathogen#infect()
-    execute pathogen#helptags()
-    " After add a plugin in bundle run :Helptags
-catch /.*/
-    echoerr "E: Failed pathogen functions"
-endtry
 " Enable filetype detection
 " Enable filetype-specific plugins
 " Enable filetype-specific indenting
@@ -413,7 +408,7 @@ let g:syntastic_style_error_symbol = 'e'
 let g:syntastic_style_warning_symbol = 'w'
 
 " Vimwiki: {{{3
-if isdirectory($HOME."/.vim/bundle/vimwiki")
+if isdirectory($HOME."/.vim/pack/vendor/start/vimwiki")
     let gyr_wiki = {}
     let gyr_wiki.path = '~/.gyr.d/vimwiki/'
     let gyr_wiki.path_html = '~/.gyr.d/public_html/'

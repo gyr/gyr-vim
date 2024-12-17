@@ -23,7 +23,7 @@ set path+=$HOME/.gyr.d/suse.d/**
 " Plugin:{{{2
 
 " Vimwiki: {{{3
-if isdirectory($HOME."/.vim/bundle/vimwiki")
+if isdirectory($HOME."/.vim/pack/vendor/start/vimwiki")
     let suse_wiki = {}
     let suse_wiki.path = '~/.gyr.d/suse.d/vimwiki/'
     let suse_wiki.path_html = '~/.gyr.d/suse.d/public_html/'

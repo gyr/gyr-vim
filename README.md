@@ -1,68 +1,43 @@
 Installation:
 ```
-    git clone --recursive git://github.com/gutoyr/dotvim.git ~/.vim
-
-    or
-
-    git clone git://github.com/gutoyr/dotvim.git ~/.vim
-    #ln -s ~/.vim/vimrc ~/.vimrc
-    #ln -s ~/.vim/gvimrc ~/.gvimrc
-    cd ~/.vim
-    git submodule init
-    git submodule sync
-    git submodule update
+git clone --recursive git://github.com/gyr/dotvim.git ~/.vim
 ```
 
 
-Upgrading a plugin bundle:
+Installing plugins:
 ```
-    cd ~/.vim/bundle/fugitive
-    git pull origin master
-```
-
-
-Upgrading all bundled plugins:
-```
-    git submodule update --remote
-
-    or
-
-    git submodule foreach git pull origin {master,main}
-```
-
-Adding a plugin bundle:
-```
-    cd ~/.vim
-    git submodule add http://github.com/tpope/vim-fugitive.git bundle/fugitive
-    git submodule init
+PLUGINS="http://github.com/prabirshrestha/vim-lsp.git
+  http://github.com/tpope/vim-fugitive.git
+  http://github.com/scrooloose/syntastic.git
+  http://github.com/tpope/vim-unimpaired.git
+  http://github.com/vimwiki/vimwiki.git
+  http://github.com/andreasvc/vim-256noir.git
+  http://github.com/mhinz/vim-signify.git"
+mkdir -p ~/.vim/pack/vendor/start
+for i in ${PLUGINS}
+do
+    git -C ~/.vim/pack/vendor/start clone $i
+done
 ```
 
-[git submodule + pathogen reference][1]
 
-Removing a plugin bundle:
+Upgrading all plugins:
 ```
-    cd ~/.vim
-    git submodule deinit -f bundle/fugitive
-    rm -rf .git/modules/bundle/fugitive
-    git rm -f bundle/fugitive
-    git clean -dfx
+for i in $(ls ~/.vim/pack/vendor/start)
+do
+    pushd ~/.vim/pack/vendor/start/$i
+    git fetch --prune --all
+    git pull
+    popd
+done
 ```
 
-    or
+Adding a plugin:
+```
+git -C ~/.vim/pack/vendor/start clone <git_repos_url>
+```
 
-    To remove a submodule you need to:
-
-    Delete the relevant section from the .gitmodules file.
-    Stage the .gitmodules changes git add .gitmodules
-    Delete the relevant section from .git/config.
-    Run `git rm --cached path_to_submodule` (no trailing slash).
-    Run `rm -rf .git/modules/path_to_submodule`
-    Commit `git commit -m "Removed submodule <name>"`
-    Delete the now untracked submodule files
-    `rm -rf path_to_submodule`
-
-[git submodule reference][2]
-
-[1] http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
-[2] https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal
-[3] https://www.vogella.com/tutorials/GitSubmodules/article.html
+Removing a plugin :
+```
+rm -rf ~/.vim/pack/vendor/start/<plugin_name>
+```

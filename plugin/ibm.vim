@@ -26,7 +26,7 @@ set path+=$HOME/work/hostos/**
 " Plugin:{{{2
 
 " Vimwiki: {{{3
-if isdirectory($HOME."/.vim/bundle/vimwiki")
+if isdirectory($HOME."/.vim/pack/vendor/start/vimwiki")
     let ibm_wiki = {}
     let ibm_wiki.path = '~/.gyr.d/ibm.d/vimwiki/'
     let ibm_wiki.path_html = '~/.gyr.d/ibm.d/public_html/'
