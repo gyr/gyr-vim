@@ -17,7 +17,22 @@ set cpo&vim
 "===============================================================================
 " Settings:{{{1
 
-let b:syntastic_checkers=['jsonlint']
+setlocal foldmethod=indent
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+
+"-------------------------------------------------------------------------------
+" Plugin:{{{2
+"
+" ale: {{{3
+let b:ale_linters = {
+    \   'json': ['jq', 'jsonlint'],
+    \ }
+let b:ale_fixers = {
+    \   'json': ['jq'],
+    \ }
 
 " }}}1
 "===============================================================================

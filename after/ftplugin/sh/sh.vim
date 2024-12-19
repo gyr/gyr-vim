@@ -23,10 +23,18 @@ setlocal makeprg=shellcheck\ -f\ gcc\ %
 
 call gyrlib#ProgTextMode()
 
-let b:syntastic_checkers=['sh', 'bash', 'shellcheck', 'bashate']
-let b:syntastic_sh_args='-n'
-let b:syntastic_sh_sh_args='-n'
-let b:syntastic_sh_bash_args='-n'
+"-------------------------------------------------------------------------------
+" Plugin:{{{2
+"
+" ale: {{{3
+let b:ale_linters = {
+    \   'sh': ['shellcheck', 'bashate'],
+    \ }
+let b:ale_fixers = {
+    \   'sh': ['shfmt'],
+    \ }
+let g:ale_sh_shellcheck_options = '-e SC2162'
+let g:ale_sh_bashate_options = '-i E006'
 
 "}}}1
 "===============================================================================

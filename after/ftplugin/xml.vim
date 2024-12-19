@@ -17,14 +17,29 @@ set cpo&vim
 "===============================================================================
 " Settings:{{{1
 
-setlocal omnifunc& omnifunc=xmlcomplete#CompleteTags
+"setlocal omnifunc& omnifunc=xmlcomplete#CompleteTags
 
 " Set the makeprg to use xmllint with the shellredirect option for error capture
 set makeprg=xmllint\ --noout\ --shellredirect\ 1\ %
 " Define the errorformat for xmllint's output
 set errorformat=%f:%l:%c:%m
 
-let b:syntastic_checkers=['xmllint']
+setlocal foldmethod=indent
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+
+"-------------------------------------------------------------------------------
+" Plugin:{{{2
+"
+" ale: {{{3
+let b:ale_linters = {
+    \   'xml': ['xmllint'],
+    \ }
+let b:ale_fixers = {
+    \   'xml': ['xmllint'],
+    \ }
 
 " }}}1
 "===============================================================================
