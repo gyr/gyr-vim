@@ -426,7 +426,7 @@ function! gyrlib#MRU(command, arg)
 endfunction
 "}}}3
 
-" gyrlib#DosToUnix{{{{3
+" gyrlib#DosToUnix{{{3
 " https://github.com/romainl/dotvim/blob/master/autoload/functions.vim
 function! gyrlib#DosToUnix()
     silent update
@@ -436,8 +436,21 @@ function! gyrlib#DosToUnix()
 endfunction
 "}}}3
 
-"
-"-------------------------------------------------------------------------------
+" gyrlib#LinterStatus{{{3
+function! gyrlib#LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+"}}}3
+
 " }}}2
 "-------------------------------------------------------------------------------
 " LOCAL:{{{2

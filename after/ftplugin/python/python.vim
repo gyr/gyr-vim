@@ -50,13 +50,6 @@ setlocal tags+=~/.vim-tmp/tags/python27tags
 "call system("ctags -R -f ~/.vim-tmp/tags/python27.tags /usr/lib/python2.7")
 "call system("ctags -R -f ~/.vim-tmp/tags/python3.tags /usr/lib/python3")
 
-let b:syntastic_enable_python_checker = 1
-let b:syntastic_checkers=['flake8', 'pylint', 'python']
-let b:syntastic_python_checkers=['flake8', 'pylint', 'python']
-let b:syntastic_python_flake8_args='--ignore=E501'
-let b:syntastic_python_pylint_args='--disable=missing-docstring'
-"let b:syntastic_quiet_messages = { "regex": ['E501 line too long', 'E501',], }
-
 " set black to format when using gq
 if executable('black')
     setlocal formatprg=black\ --quiet\ -
@@ -76,6 +69,16 @@ if executable('pylsp')
         \ 'allowlist': ['python'],
         \ })
 endif
+
+" ale: {{{3
+let b:ale_linters = {
+    \   'python': ['flake8', 'pylint'],
+    \ }
+let b:ale_fixers = {
+    \   'python': ['black'],
+    \ }
+let b:ale_python_flake8_options = '--ignore=E501'
+let b:ale_python_pylint_options = '--disable=missing-docstring'
 
 "}}}2
 "-------------------------------------------------------------------------------

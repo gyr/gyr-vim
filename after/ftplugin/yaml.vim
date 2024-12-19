@@ -30,7 +30,13 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 
-let b:syntastic_checkers=['yamllint']
+"-------------------------------------------------------------------------------
+" Plugin:{{{2
+"
+" ale: {{{3
+let b:ale_linters = {
+    \   'yaml': ['yamllint'],
+    \ }
 
 " }}}1
 "===============================================================================

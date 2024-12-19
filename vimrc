@@ -130,8 +130,11 @@ if has('statusline')
     set statusline+=%=       " left/right separator
     try
         set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
+    catch
+    endtry
+    try
+        set statusline+=\|%{gyrlib#LinterStatus()}
     catch
     endtry
     set statusline+=\|%{&ff} " file format
@@ -374,38 +377,10 @@ let g:MotorolaLoadSettings = 1
 " Disable IBM Settings
 let g:IBMLoadSettings = 1
 
-" GitGutter:{{{3
-try
-    highlight link GitGutterAdd DiffAdd
-    highlight link GitGutterChange DiffChange
-    highlight link GitGutterDelete DiffDelete
-    highlight link GitGutterChangeDelete GitGutterChangeLineDefault
-catch /.*/
-    echoerr "Failed to load GitGutter functions"
-endtry
-" }}}3
-" Matchit:{{{3
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-    runtime! macros/matchit.vim
-endif
-" }}}3
 " clibs:{{{3
 " clibs.vim : Syntax highlighting for C library functions and constants
 let c_hi_identifiers = 'all'
 let c_hi_libs = ['*']
-
-" syntastic:{{{3
-let g:syntastic_auto_jump = 2
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"let g:syntastic_error_symbol =  '▶'
-"let g:syntastic_warning_symbol = '»'
-let g:syntastic_error_symbol =  'E'
-let g:syntastic_warning_symbol = 'W'
-let g:syntastic_style_error_symbol = 'e'
-let g:syntastic_style_warning_symbol = 'w'
 
 " Vimwiki: {{{3
 if isdirectory($HOME."/.vim/pack/vendor/start/vimwiki")
@@ -422,6 +397,7 @@ if isdirectory($HOME."/.vim/pack/vendor/start/vimwiki")
 endif
 
 " vim-lsp: {{{3
+let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     "setlocal signcolumn=yes
@@ -451,6 +427,11 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" ALE: {{{3
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"[flake8] E032: expected 2 blank lines, found 1 [E]
 
 "}}}2
 "-------------------------------------------------------------------------------
@@ -909,24 +890,6 @@ nnoremap <C-W>Y <C-W><C-W>:close<Bar>vsplit #<CR>
 "-------------------------------------------------------------------------------
 " Plugins:{{{2
 
-" GitGutter:{{{3
-try
-    nnoremap <silent><unique><Leader>gg :GitGutterToggle<CR>
-    nnoremap <silent><unique><Leader>gs :GitGutterStageHunk<CR>
-    nnoremap <silent><unique><Leader>gr :GitGutterRevertHunk<CR>
-    nnoremap [g :GitGutterPrevHunk<CR>
-    nnoremap ]g :GitGutterNextHunk<CR>
-catch /.*/
-    echoerr "Failed to load GitGutter functions"
-endtry
-
-" Syntastic:{{{3
-try
-    nnoremap <silent><unique><Leader>sc :SyntasticCheck<CR>
-    nnoremap <silent><unique><Leader>sr :SyntasticReset<CR>``zz
-catch /.*/
-    echoerr "Failed to load Syntastic functions"
-endtry
 
 "}}}2
 "-------------------------------------------------------------------------------
