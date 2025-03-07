@@ -72,7 +72,7 @@ endif
 
 " ale: {{{3
 let b:ale_linters = {
-    \   'python': ['flake8', 'pylint'],
+    \   'python': ['flake8', 'mypy', 'pylint'],
     \ }
 let b:ale_fixers = {
     \   'python': ['black'],
