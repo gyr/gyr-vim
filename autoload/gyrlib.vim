@@ -355,17 +355,21 @@ endfunction
 
 " gyrlib#ToggleTextMode:{{{3
 function! gyrlib#ToggleTextMode()
-    setlocal nowrap
-    setlocal nolinebreak
+    setlocal nowrap!
+    setlocal nolinebreak!
     "setlocal list!
-    setlocal norelativenumber
-    setlocal nonumber
-    setlocal formatoptions+=t
-    if &textwidth == 0
-        setlocal textwidth=80
-    else
-        setlocal textwidth=0
-    endif
+    setlocal norelativenumber!
+    setlocal nonumber!
+    " We want to keep comments within an 80 column limit, but not code.
+    " These two options give us that
+    setlocal formatoptions-=t
+    setlocal textwidth=80
+    "setlocal formatoptions+=t
+    "if &textwidth == 0
+    "    setlocal textwidth=80
+    "else
+    "    setlocal textwidth=0
+    "endif
 endfunction
 " }}}3
 
