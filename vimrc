@@ -90,7 +90,7 @@ set sidescrolloff=10
 set display+=lastline
 set cmdheight=2     " 2 line for command
 "set lazyredraw      " don't redraw when don't have to
-set nonumber          " Display line numbers
+set number        " Display line numbers
 set numberwidth=1   " Use 1 col + 1 space for numbers
 
 "}}}2
@@ -110,6 +110,21 @@ if exists('+colorcolumn')
 endif
 set spelllang=en
 
+"}}}2
+"-------------------------------------------------------------------------------
+" Cursor:{{{2
+" Use a line cursor within insert mode and a block cursor everywhere else.
+"
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 "}}}2
 "-------------------------------------------------------------------------------
 " Multiple windows:{{{2
@@ -671,6 +686,10 @@ inoremap <expr> #! "#!" . substitute(system("which env"), "\n", "", "") . " " . 
 
 " Show changes made to current buffer since the last save
 noremap <unique><Leader>diff :w !delta -s % -<CR>
+
+" if we have 3 * in a row make them into **/*
+" this only applied on the end of a line
+cnoremap <expr> * getcmdline() =~ '.*\*\*$' ? '/*' : '*'
 "}}}2
 "------------------------------------------------------------------------
 " Insert Mode:{{{2
@@ -685,7 +704,6 @@ noremap <unique><Leader>diff :w !delta -s % -<CR>
 "}}}2
 "-------------------------------------------------------------------------------
 " Copy/Paste:{{{2
-"nnoremap <unique>Y y$
 noremap <unique>Y y$
 noremap <Leader>y "+y
 noremap <Leader>d "+d
@@ -743,11 +761,11 @@ nnoremap <unique><Leader>e :Lex<CR>
 "-------------------------------------------------------------------------------
 " Fixes:{{{2
 " Disable enter 'Ex mode'
-noremap Q <Nop>
-noremap gQ <Nop>
+"noremap Q <Nop>
+"noremap gQ <Nop>
 " Don't use Ex mode, use Q for formatting
 "noremap Q gq
-noremap q: <Nop>
+"noremap q: <Nop>
 
 noremap <F1> <Esc>
 noremap! <F1> <Esc>
@@ -996,11 +1014,13 @@ if has("gui_running")
     "set guifont=ProggyCleanTTSZ\ 12
     "set guifont=Terminus\ 8
     "set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
-    set guifont=Inconsolata\ 10
+    "set guifont=Inconsolata\ 10
+    set guifont=Hack\ 10
     "set guifont=Inconsolata-dz-Powerline \10
     "
     "colorscheme gyr_paleturquoise256
-    colorscheme gyrcolor
+    "colorscheme gyrcolor
+    colorscheme 256_noir
 endif
 if has("win32")
     set guifont=ProggyCleanSZ:h8:cDEFAULT
@@ -1018,13 +1038,30 @@ endif
 " cit   => change inside tag
 " g;    => go to older changed position (backward)
 " g,    => go to newer changed position (forward)
+" '.    =>Location of last change
 " CTRL-O => go to older jump list position
 " CTRL-I => go to newer jump list position
 " gi    => start inserting in the last insert position
-" gv    => repeat last selection
+" '^    => Location of last insertion
+" gv    => repeat last visual selection
 " ga    => code of character under cursor
 " g?    => Rot13 encode (embaralha o texto)
 " gn    => go to next match and select it
+" g0    => begining of visual line
+" g$    => end of visual line
+" g_    => move to the last non-blank char of the line
+" &     => Repeat last substitution on current line
+" g&    => Repeat last substitution on all lines
+" `[    =>Jump to beginning of last yanked text
+" `]    =>Jump to end of last yanked text
+" `<    =>Jump to beginning of last visual selection
+" `>    =>Jump to end of last visual selection
+" +     => Move to the first non-whitespace character of the next line
+" S     => Delete current line and go into insert mode
+" dat   => Delete around an HTML tag, including the tag
+" dit   => Delete inside an HTML tag, excluding the tag
+" m{letter}   => create a mark
+" '{letter}   => use a mark
 " [i    => show first occurence of pattern, for instance, show first variable attribution
 " [I    => list of matching pattern
 " ]]    => begin function
@@ -1035,6 +1072,10 @@ endif
 " @<register> => execute the content of register, works with +, ., #, :, / like
 "                C-R
 " vi"p  => replace the text inside '"' with the content of default buffer
+" q:    => show the command-line window :help cmdwin
+" !<ESC>!<Motion> => you will get in command line if <Motion> = G:
+" :.,$!
+"
 " }}}2
 "-------------------------------------------------------------------------------
 " Insertion mode:{{{2
@@ -1076,7 +1117,27 @@ endif
 " teste
 " :%s/teste/& concluído/
 " teste concluído
-
+"
+" First line
+" Second line.
+" Thrid line.
+" Forth line
+" <char>\@<! exclude <char> from the search
+" :%s/^.*\.@<!$/&./
+" First line.
+" Second line.
+" Thrid line.
+" Forth line.
+"
+" add a file or the output of a command in the file
+" :read <filename>
+" :read !<shell command>
+"
+" search echo in all files in arglist
+" :vimgrep /echo/g ##
+"
+" select line \%l:
+":1030,1040g/\%1034l\|\%1037l/p
 " }}}2
 "-------------------------------------------------------------------------------
 " Explore mode:{{{2
@@ -1088,12 +1149,19 @@ endif
 " D  Delete the file/directory under the cursor
 " }}}2
 "-------------------------------------------------------------------------------
+" Terminal mode:{{{2
+"
+" on terminal buffer (:term)
+" <C-w>N enter normal mode in terminal
+" A exit normal mode
+" <C-w>"" paste default register in terminal
+" <C-w>: enter command mode in terminal
+" }}}2
+"-------------------------------------------------------------------------------
 
 "<C-a> and <C-x> in normal mode to increment/decrement numbers.
 "
 "<C-v> to start visual-block mode.
-"
-"<C-y> and <C-e> in insert mode to insert the character above and below.
 "
 "<C-w> in insert mode to delete the last typed word.
 "
