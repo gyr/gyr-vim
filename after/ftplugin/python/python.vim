@@ -72,13 +72,11 @@ endif
 
 " ale: {{{3
 let b:ale_linters = {
-    \   'python': ['flake8', 'mypy', 'pylint'],
+    \   'python': ['ruff', 'mypy'],
     \ }
 let b:ale_fixers = {
-    \   'python': ['black'],
+    \   'python': ['ruff', 'ruff_format'],
     \ }
-let b:ale_python_flake8_options = '--ignore=E501'
-let b:ale_python_pylint_options = '--disable=missing-docstring'
 
 "}}}2
 "-------------------------------------------------------------------------------
