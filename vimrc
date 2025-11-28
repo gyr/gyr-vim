@@ -375,13 +375,12 @@ if $TERM =~ '256color'
 endif
 
 if &t_Co > 16
-    "colorscheme gyrcolor
     "set term=xterm-256color
     "set term=screen-256color
     if has('termguicolors')
         set termguicolors
     endif
-    colorscheme 256_noir
+    colorscheme marques-de-itu
 endif
 
 "}}}2
@@ -1019,9 +1018,7 @@ if has("gui_running")
     set guifont=Hack\ 10
     "set guifont=Inconsolata-dz-Powerline \10
     "
-    "colorscheme gyr_paleturquoise256
-    "colorscheme gyrcolor
-    colorscheme 256_noir
+    colorscheme marques-de-itu
 endif
 if has("win32")
     set guifont=ProggyCleanSZ:h8:cDEFAULT

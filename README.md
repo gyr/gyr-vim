@@ -6,16 +6,17 @@ git clone --recursive git://github.com/gyr/dotvim.git ~/.vim
 
 Installing plugins:
 ```
-PLUGINS="http://github.com/prabirshrestha/vim-lsp.git
-  http://github.com/dense-analysis/ale.git
-  http://github.com/rhysd/vim-lsp-ale.git
+PLUGINS="http://github.com/dense-analysis/ale.git
   http://github.com/junegunn/fzf.git
   http://github.com/junegunn/fzf.vim.git
-  http://github.com/tpope/vim-fugitive.git
-  http://github.com/tpope/vim-unimpaired.git
-  http://github.com/vimwiki/vimwiki.git
+  http://github.com/brennovich/marques-de-itu.git
   http://github.com/andreasvc/vim-256noir.git
-  http://github.com/mhinz/vim-signify.git"
+  http://github.com/tpope/vim-fugitive.git
+  http://github.com/rhysd/vim-lsp-ale.git
+  http://github.com/prabirshrestha/vim-lsp.git
+  http://github.com/mhinz/vim-signify.git
+  http://github.com/tpope/vim-unimpaired.git
+  http://github.com/vimwiki/vimwiki.git"
 mkdir -p ~/.vim/pack/vendor/start
 for i in ${PLUGINS}
 do
